@@ -1,0 +1,120 @@
+{
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "team": "Equipo",
+    "reels": "Reels",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "clientLogin": "Acceso Clientes",
+    "quoteCTA": "Cotizar Carga"
+  },
+  "Header": {
+    "tagline": "Especialistas en Transporte Transfronterizo | EE. UU. y México"
+  },
+  "Hero": {
+    "badge": "Servicios de Transporte Transfronterizo",
+    "titleLine1": "Excelencia Absolute en",
+    "titleLine2": "Flete Transfronterizo.",
+    "subtitle": "Especializados en flete de camión completo (FTL) puerta a puerta, operaciones aduanales listas y cruces seguros desde 2011.",
+    "ctaPrimary": "Explorar Servicios",
+    "ctaSecondary": "Contáctanos Ahora",
+    "watchVideo": "Ver Video de Experiencia",
+    "statsFleet": "Unidades Activas de Flota",
+    "statsExperience": "Años de Excelencia",
+    "statsDelivery": "Tasa de Entrega a Tiempo",
+    "statsTracking": "Rastreo Satelital 24/7"
+  },
+  "Services": {
+    "badge": "Nuestra Oferta Principal",
+    "title": "Soluciones Transfronterizas Absolute",
+    "subtitle": "Servicios de carga completa (FTL) y logística diseñados para una ejecución impecable entre México y Estados Unidos.",
+    "readMore": "Conocer Más",
+    "ftlTitle": "Carga Completa (FTL) Puerta a Puerta",
+    "ftlDesc": "Transporte de carga completa directo de origen a destino sin manipulaciones innecesarias de mercancía.",
+    "borderTitle": "Servicios de Cruce Fronterizo",
+    "borderDesc": "Capacidades de cruce directo a través de los principales puertos comerciales como Laredo, TX con total cumplimiento aduanero.",
+    "expeditedTitle": "Servicio Expedito y Carga Crítica",
+    "expeditedDesc": "Opciones de tránsito acelerado para envíos urgentes con cobertura de doble operador y monitoreo dedicado.",
+    "transloadingTitle": "Transbordo y Almacenaje",
+    "transloadingDesc": "Operaciones en terminal segura en Laredo, TX ofreciendo cross-docking, almacenaje a corto/largo plazo y consolidación de carga."
+  },
+  "ReelsSection": {
+    "badge": "Flota y Operaciones",
+    "title": "Absolute en Acción",
+    "subtitle": "Echa un vistazo a nuestras instalaciones, flota de última generación y al equipo operativo detrás del cruce de carga.",
+    "viewAll": "Ver Todos los Reels",
+    "playReel": "Reproducir Reel",
+    "pauseReel": "Pausar Reel"
+  },
+  "ClientsCertificates": {
+    "clientsBadge": "Líderes de la Industria",
+    "clientsTitle": "Empresas que Confían en Absolute",
+    "certsBadge": "Certificados y Regulados",
+    "certsTitle": "Máximos Estándares en Seguridad Logística",
+    "certCTPAT": "Certificación C-TPATAlianza Aduana-Comercio Contra el Terrorismo",
+    "certCVSA": "Cumplimiento en Inspecciones CVSA Safety Alliance",
+    "certDOT": "Operador Autorizado por el US DOT y FMCSA",
+    "certSCAC": "Código Alpha de Transportista Estándar Registrado"
+  },
+  "WhyUs": {
+    "badge": "La Ventaja Absolute",
+    "title": "Por qué las Empresas Elegirnos",
+    "reason1Title": "Experiencia Transfronteriza Dedicada",
+    "reason1Desc": "Más de 13 años especializados exclusivamente en el corredor de carga México - EE. UU.",
+    "reason2Title": "Seguridad Total de Carga",
+    "reason2Desc": "Rastreo GPS en el 100% del equipo con sistemas de alerta de perímetro en tiempo real.",
+    "reason3Title": "Estricto Cumplimiento C-TPAT y CVSA",
+    "reason3Desc": "Operaciones de frontera certificadas para minimizar demoras e inspecciones aduanales.",
+    "reason4Title": "Monitoreo 24/7 Bilingüe",
+    "reason4Desc": "Comunicación proactiva continua en inglés y español."
+  },
+  "Team": {
+    "badge": "Liderazgo y Excelencia Operativa",
+    "title": "Conoce al Equipo Absolute",
+    "subtitle": "Nuestro liderazgo experimentado y profesionales en logística garantizan el flujo continuo de su mercancía.",
+    "filterAll": "Todos los Miembros",
+    "filterExecutive": "Liderazgo Ejecutivo",
+    "filterOperations": "Operaciones y Logística",
+    "filterSafety": "Seguridad y Cumplimiento"
+  },
+  "Blog": {
+    "badge": "Noticias e Inteligencia Logística",
+    "title": "Artículos y Tendencias de Comercio Transfronterizo",
+    "subtitle": "Manténgase informado con análisis de expertos en comercio México - EE. UU. y logística internacional.",
+    "searchPlaceholder": "Buscar artículos...",
+    "readTime": "min de lectura",
+    "publishedOn": "Publicado el",
+    "author": "Por",
+    "backToBlog": "Volver al Blog",
+    "relatedPosts": "Artículos Relacionados"
+  },
+  "Contact": {
+    "badge": "Ponte en Contacto",
+    "title": "Inicia tu Envíos Hoy Mismo",
+    "subtitle": "Contacta a nuestros especialistas en Laredo, TX para cotizaciones inmediatas y planeación logística a la medida.",
+    "formName": "Nombre Completo",
+    "formEmail": "Correo Electrónico",
+    "formPhone": "Teléfono de Contacto",
+    "formCompany": "Nombre de la Empresa",
+    "formService": "Servicio Requerido",
+    "formMessage": "Mensaje / Detalles de Carga",
+    "formSubmit": "Enviar Consulta",
+    "addressTitle": "Oficina Central y Terminal",
+    "addressText": "1208 Vidal Cantu Rd., Laredo, TX 78045",
+    "phoneTitle": "Teléfono Directo",
+    "phoneText": "(956) 727 6004",
+    "emailTitle": "Correo de Soporte",
+    "emailText": "contact@absolute-fi.com",
+    "hoursTitle": "Horario de Atención",
+    "hoursText": "Operaciones y Monitoreo 24/7"
+  },
+  "Footer": {
+    "description": "Absolute Group Inc. es un proveedor logístico líder en transporte transfronterizo especializado en flete de camión completo (FTL) puerta a puerta entre México y EE. UU.",
+    "quickLinks": "Enlaces Rápidos",
+    "servicesTitle": "Nuestros Servicios",
+    "contactInfo": "Información de Contacto",
+    "copyright": "Todos los derechos reservados. Absolute Group Inc."
+  }
+}

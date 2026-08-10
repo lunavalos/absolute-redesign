@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: #0E4194;
+    --brand-[#1453B9]: #1453B9;
+    --brand-secondary: #4B4B4B;
+    --brand-text: #393939;
+    --brand-bg: #FFFFFF;
+    --brand-bg-alt: #F8FAFC;
+    --brand-bg-dark: #000000;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color: var(--brand-text);
+    background-color: var(--brand-bg);
+  }
+
+  body {
+    font-family: var(--font-rubik), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #393939;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #0E4194;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1453B9;
+}
+
+/* Custom Glass & Raycast Utilities */
+.glass-header {
+  background: rgba(7, 8, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-dark {
+  background: rgba(7, 8, 10, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aspect-reel {
+  aspect-ratio: 9 / 16;
+}
+
+/* Infinite Marquee Keyframe */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+/* GPU-Accelerated Ultra-Fluid Border Beam Animation */
+@keyframes border-beam-fluid {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.animate-border-beam-fluid {
+  animation: border-beam-fluid 4s linear infinite;
+  will-change: transform;
+}
+
+/* Index Ambient Soft Floating Blob Keyframes */
+@keyframes float-blob {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 25px) scale(0.92);
+  }
+}
+
+.animate-blob {
+  animation: float-blob 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-blob-delayed {
+  animation: float-blob 18s ease-in-out 4s infinite reverse;
+  will-change: transform;
+}

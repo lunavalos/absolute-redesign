@@ -1,0 +1,120 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "team": "Team",
+    "reels": "Reels",
+    "blog": "Blog",
+    "contact": "Contact",
+    "clientLogin": "Client Login",
+    "quoteCTA": "Get a Quote"
+  },
+  "Header": {
+    "tagline": "Cross-Border Logistics Specialists | US & Mexico"
+  },
+  "Hero": {
+    "badge": "Cross Border Transportation Services",
+    "titleLine1": "Absolute Excellence in",
+    "titleLine2": "Cross-Border Freight.",
+    "subtitle": "Specializing in door-to-door FTL freight, customs-ready operations, and secure cross-border movements since 2011.",
+    "ctaPrimary": "Explore Services",
+    "ctaSecondary": "Contact Us Now",
+    "watchVideo": "Watch Experience Video",
+    "statsFleet": "Active Power Units",
+    "statsExperience": "Years of Excellence",
+    "statsDelivery": "On-Time Delivery Rate",
+    "statsTracking": "24/7 Satellite Tracking"
+  },
+  "Services": {
+    "badge": "Our Core Offerings",
+    "title": "Absolute Cross-Border Solutions",
+    "subtitle": "Tailored Full-Truckload (FTL) and logistics services built for seamless execution between the United States and Mexico.",
+    "readMore": "Learn More",
+    "ftlTitle": "Door-to-Door FTL Freight",
+    "ftlDesc": "Seamless, end-to-end full truckload transport directly from origin to destination without unnecessary cargo handling.",
+    "borderTitle": "Border Crossing Services",
+    "borderDesc": "Expert cross-border transfer capabilities operating through major commercial ports like Laredo, TX with full customs compliance.",
+    "expeditedTitle": "Expedited & Time-Critical Freight",
+    "expeditedDesc": "Fast-track transit options for urgent shipments requiring dual-driver coverage and dedicated dispatch monitoring.",
+    "transloadingTitle": "Transloading & Warehousing",
+    "transloadingDesc": "Secure terminal operations in Laredo, TX offering cross-docking, short/long-term storage, and load consolidation."
+  },
+  "ReelsSection": {
+    "badge": "Fleet & Operations",
+    "title": "Absolute in Action",
+    "subtitle": "Take a look behind the scenes at our state-of-the-art fleet, secure facilities, and dedicated cross-border operations team.",
+    "viewAll": "View All Reels",
+    "playReel": "Play Reel",
+    "pauseReel": "Pause Reel"
+  },
+  "ClientsCertificates": {
+    "clientsBadge": "Trusted Industry Leaders",
+    "clientsTitle": "Companies That Count On Absolute",
+    "certsBadge": "Certified & Compliant",
+    "certsTitle": "Highest Standards in Logistics Safety",
+    "certCTPAT": "C-TPAT Certified Customs-Trade Partnership Against Terrorism",
+    "certCVSA": "CVSA Safety Alliance Inspections Compliant",
+    "certDOT": "US DOT & FMCSA Licensed Operator",
+    "certSCAC": "Registered Standard Carrier Alpha Code"
+  },
+  "WhyUs": {
+    "badge": "The Absolute Advantage",
+    "title": "Why Global Enterprises Partner With Us",
+    "reason1Title": "Dedicated Cross-Border Expertise",
+    "reason1Desc": "Over 13 years specializing exclusively in US-Mexico freight corridors.",
+    "reason2Title": "Total Cargo Security",
+    "reason2Desc": "Satellite GPS tracking on 100% of equipment with real-time perimeter alert systems.",
+    "reason3Title": "Strict C-TPAT & CVSA Compliance",
+    "reason3Desc": "Certified border operations minimizing port delays and inspection bottlenecks.",
+    "reason4Title": "24/7 Multilingual Dispatch",
+    "reason4Desc": "Round-the-clock proactive communication in English and Spanish."
+  },
+  "Team": {
+    "badge": "Leadership & Operational Excellence",
+    "title": "Meet The Absolute Team",
+    "subtitle": "Our experienced leadership and logistics professionals ensure your cross-border freight moves flawlessly.",
+    "filterAll": "All Members",
+    "filterExecutive": "Executive Leadership",
+    "filterOperations": "Operations & Logistics",
+    "filterSafety": "Safety & Compliance"
+  },
+  "Blog": {
+    "badge": "Industry Insights & News",
+    "title": "Logistics & Cross-Border Intelligence",
+    "subtitle": "Stay informed with expert insights on US-Mexico trade, supply chain strategy, and regulatory updates.",
+    "searchPlaceholder": "Search articles...",
+    "readTime": "min read",
+    "publishedOn": "Published on",
+    "author": "By",
+    "backToBlog": "Back to Blog",
+    "relatedPosts": "Related Articles"
+  },
+  "Contact": {
+    "badge": "Get In Touch",
+    "title": "Start Your Freight Movement Today",
+    "subtitle": "Contact our dispatch and sales specialists in Laredo, TX for immediate rates and customized logistics planning.",
+    "formName": "Full Name",
+    "formEmail": "Email Address",
+    "formPhone": "Phone Number",
+    "formCompany": "Company Name",
+    "formService": "Service Needed",
+    "formMessage": "Message / Shipment Details",
+    "formSubmit": "Submit Inquiry",
+    "addressTitle": "Headquarters & Terminal",
+    "addressText": "1208 Vidal Cantu Rd., Laredo, TX 78045",
+    "phoneTitle": "Direct Phone",
+    "phoneText": "(956) 727 6004",
+    "emailTitle": "Email Support",
+    "emailText": "contact@absolute-fi.com",
+    "hoursTitle": "Operating Hours",
+    "hoursText": "24/7 Operations & Dispatch"
+  },
+  "Footer": {
+    "description": "Absolute Group Inc. is a premier cross-border logistics provider specializing in door-to-door FTL transportation between Mexico and the United States.",
+    "quickLinks": "Quick Links",
+    "servicesTitle": "Our Services",
+    "contactInfo": "Contact Information",
+    "copyright": "All rights reserved. Absolute Group Inc."
+  }
+}
