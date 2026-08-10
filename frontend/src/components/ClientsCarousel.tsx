@@ -49,14 +49,14 @@ export default function ClientsCarousel() {
         {/* Navigation Arrows */}
         <button 
           onClick={prevSlide}
-          className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-[#0E4194] transition-colors z-10 bg-white rounded-full shadow-sm hover:shadow-md"
+          className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition-all duration-300 z-10 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] rounded-full backdrop-blur-sm"
         >
           <ChevronLeft className="w-8 h-8" />
         </button>
 
         <button 
           onClick={nextSlide}
-          className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-[#0E4194] transition-colors z-10 bg-white rounded-full shadow-sm hover:shadow-md"
+          className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition-all duration-300 z-10 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] rounded-full backdrop-blur-sm"
         >
           <ChevronRight className="w-8 h-8" />
         </button>
@@ -73,7 +73,7 @@ export default function ClientsCarousel() {
                 className="flex-shrink-0 flex justify-center items-center px-4"
                 style={{ width: `${100 / visibleItems}%` }}
               >
-                <div className="relative w-full h-24 hover:scale-105 transition-all duration-300">
+                <div className="relative w-full h-24 hover:scale-105 transition-all duration-300 opacity-80 hover:opacity-100">
                   <Image
                     src={client.logoUrl}
                     alt={client.name}
