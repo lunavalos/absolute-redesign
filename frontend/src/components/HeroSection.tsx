@@ -5,6 +5,7 @@ import { Link } from '../navigation';
 import { ArrowRight, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import BorderBeamButton from './BorderBeamButton';
+import Grainient from './ui/Grainient';
 
 export default function HeroSection() {
   const t = useTranslations('Hero');
@@ -25,14 +26,31 @@ export default function HeroSection() {
         <source src="/images/hero-bg-1 (1).mp4" type="video/mp4" />
       </video>
 
-      {/* ── CAPA 2: Gradiente Radial Azul Estático (Centro) ── */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 55% at 50% 50%, rgba(14,65,148,0.55) 0%, rgba(9,28,61,0.25) 50%, transparent 75%)',
-        }}
-      />
+      {/* ── CAPA 2: Grainient Background Animado ── */}
+      <div className="absolute inset-0 z-10 pointer-events-none opacity-55">
+        <Grainient
+          color1="#0E4194"
+          color2="#1A4A9C"
+          color3="#000000"
+          timeSpeed={1.5}
+          colorBalance={0.0}
+          warpStrength={1.0}
+          warpFrequency={5.0}
+          warpSpeed={2.5}
+          warpAmplitude={50.0}
+          blendAngle={0.0}
+          blendSoftness={0.05}
+          rotationAmount={500.0}
+          noiseScale={2.0}
+          grainAmount={0.1}
+          grainScale={2.0}
+          grainAnimated={false}
+          contrast={1.5}
+          gamma={1.0}
+          saturation={1.0}
+          zoom={0.9}
+        />
+      </div>
 
       {/* ── CAPA 3: Vignette de Bordes ── */}
       <div

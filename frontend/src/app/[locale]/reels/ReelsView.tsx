@@ -52,7 +52,7 @@ export default function ReelsView({ reels, locale }: { reels: ReelDoc[], locale:
 
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
 
-                <div className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-blue-600/90 text-white flex items-center justify-center shadow-2xl backdrop-blur-md opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                <div className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-[#0E4194]/90 text-white flex items-center justify-center shadow-2xl backdrop-blur-md opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all">
                   <Play className="w-6 h-6 fill-current ml-1" />
                 </div>
 

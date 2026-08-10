@@ -124,7 +124,7 @@ export default function ReelsSection({ reels }: { reels: ReelDoc[] }) {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
                     {/* Play button */}
-                    <div className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-blue-600/90 hover:bg-blue-500 text-white flex items-center justify-center shadow-xl backdrop-blur-sm transition-all transform hover:scale-110 z-30 opacity-90 group-hover:opacity-100">
+                    <div className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-[#0E4194]/90 hover:bg-[#1453B9] text-white flex items-center justify-center shadow-xl backdrop-blur-sm transition-all transform hover:scale-110 z-30 opacity-90 group-hover:opacity-100">
                       <Play className="w-5 h-5 fill-current ml-0.5" />
                     </div>
 
