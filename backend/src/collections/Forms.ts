@@ -1,5 +1,6 @@
 import { APIError } from 'payload'
 
+
 export const Forms: CollectionConfig = {
   slug: 'forms',
   access: {
@@ -9,7 +10,7 @@ export const Forms: CollectionConfig = {
     useAsTitle: 'title',
     description: 'Crea y administra cuestionarios para solicitudes de empleo.',
     components: {
-      Icon: '../components/NavIcons#PostsIcon',
+      Icon: '../components/NavIcons#FormsIcon',
     },
   },
   labels: {

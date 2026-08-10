@@ -71,7 +71,7 @@ export default async function TeamPage() {
                 <h3 className="text-lg font-bold text-slate-900">
                   {member.name}
                 </h3>
-                <p className="text-sm font-medium text-blue-500 mb-2">
+                <p className="text-sm font-medium text-[#0E4194] mb-2">
                   {typeof member.position === 'string' 
                     ? member.position 
                     : (member.position as any)?.es || (member.position as any)?.en || 'Puesto no asignado'}

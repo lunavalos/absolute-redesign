@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
+
 export const JobApplications: CollectionConfig = {
   slug: 'job-applications',
   access: {
@@ -11,7 +12,7 @@ export const JobApplications: CollectionConfig = {
     defaultColumns: ['applicantName', 'email', 'totalScore', 'createdAt'],
     description: 'Respuestas a los cuestionarios de empleo.',
     components: {
-      Icon: '../components/NavIcons#PostsIcon',
+      Icon: '../components/NavIcons#JobApplicationIcon',
     },
   },
   labels: {
