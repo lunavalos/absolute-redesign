@@ -147,7 +147,7 @@ export default function ServicesSection() {
           className="mt-12 pt-8 border-t border-white/[0.07] flex items-center justify-between flex-wrap gap-4"
         >
           <p className="text-xs text-white/40 uppercase tracking-widest font-semibold">
-            {isEs ? 'Descubre todas las soluciones de Absolute' : 'Discover all Absolute solutions'}
+            {isEs ? 'Descubre todas las soluciones de Absolute Group' : 'Discover all Absolute Group solutions'}
           </p>
           <Link href="/services">
             <BorderBeamButton>

@@ -24,7 +24,7 @@ export default function ValueFeaturesSection() {
       title: isEs ? 'Seguridad Inquebrantable' : 'Uncompromising Security',
       desc: isEs
         ? 'Protección absoluta de la cadena de suministro. Operamos bajo rigurosos estándares internacionales de seguridad para brindar confianza total en cada milla.'
-        : 'Absolute protection of your supply chain. We operate under rigorous international security standards to deliver complete peace of mind on every mile.',
+        : 'Absolute Group protection of your supply chain. We operate under rigorous international security standards to deliver complete peace of mind on every mile.',
     },
     {
       id: 'tech',
@@ -81,7 +81,7 @@ export default function ValueFeaturesSection() {
           className="mb-16 max-w-3xl"
         >
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
-            {isEs ? 'El Valor de Absolute' : 'The Absolute Value'}
+            {isEs ? 'El Valor de Absolute Group' : 'The Absolute Group Value'}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4 mt-2 text-balance">
             {isEs

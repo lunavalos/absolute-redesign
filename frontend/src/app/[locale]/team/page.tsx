@@ -115,8 +115,8 @@ export default async function TeamPage() {
           </h2>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mb-8 leading-relaxed">
             {locale === 'es' 
-              ? 'Estamos siempre en busca de talento excepcional para llevar nuestras operaciones al siguiente nivel. Aplica a nuestras vacantes abiertas y sé parte de la familia Absolute.'
-              : 'We are always looking for exceptional talent to take our operations to the next level. Apply to our open positions and become part of the Absolute family.'}
+              ? 'Estamos siempre en busca de talento excepcional para llevar nuestras operaciones al siguiente nivel. Aplica a nuestras vacantes abiertas y sé parte de la familia de Absolute Group.'
+              : 'We are always looking for exceptional talent to take our operations to the next level. Apply to our open positions and become part of the Absolute Group family.'}
           </p>
           <BorderBeamButton href="/apply">
             {locale === 'es' ? 'Aplicar Ahora' : 'Apply Now'}
