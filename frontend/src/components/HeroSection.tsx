@@ -32,11 +32,11 @@ export default function HeroSection() {
           color1="#0E4194"
           color2="#1A4A9C"
           color3="#000000"
-          timeSpeed={1.5}
+          timeSpeed={1.0}
           colorBalance={0.0}
           warpStrength={1.0}
           warpFrequency={5.0}
-          warpSpeed={2.5}
+          warpSpeed={1.5}
           warpAmplitude={50.0}
           blendAngle={0.0}
           blendSoftness={0.05}
