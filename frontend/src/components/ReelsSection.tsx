@@ -79,7 +79,7 @@ export default function ReelsSection({ reels }: { reels: ReelDoc[] }) {
               href="https://www.youtube.com/@AbsoluteGroupInc/shorts"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 hover:border-white/40 text-white text-xs font-bold uppercase tracking-wider transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#BE0D08] bg-[#BE0D08] hover:bg-[#a10b07] hover:border-[#a10b07] text-white text-xs font-bold uppercase tracking-wider transition-all"
             >
               {t('viewAll')}
               <ArrowRight className="w-3.5 h-3.5" />

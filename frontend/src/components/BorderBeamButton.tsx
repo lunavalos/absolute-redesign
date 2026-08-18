@@ -7,13 +7,15 @@ interface BorderBeamButtonProps {
   href?: string;
   onClick?: () => void;
   className?: string;
+  isRed?: boolean;
 }
 
 export default function BorderBeamButton({
   children,
   href,
   onClick,
-  className = ''
+  className = '',
+  isRed = false
 }: BorderBeamButtonProps) {
   const buttonMarkup = (
     <div className={`relative inline-flex p-[1px] rounded-xl overflow-hidden group shadow-xl transition-transform hover:scale-[1.03] active:scale-[0.97] bg-white/10 ${className}`}>
@@ -21,7 +23,9 @@ export default function BorderBeamButton({
       <div className="absolute top-1/2 left-1/2 w-[300%] aspect-square animate-border-beam-fluid bg-[conic-gradient(from_0deg,transparent_0_300deg,#3b82f6_330deg,#60a5fa_350deg,#ffffff_360deg)] opacity-100 pointer-events-none" />
 
       {/* Solid Inner Button Container */}
-      <span className="relative z-10 inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-[11px] bg-[#0E4194] hover:bg-[#1453B9] text-white text-xs font-bold uppercase tracking-wider transition-colors duration-300 w-full">
+      <span className={`relative z-10 inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-[11px] text-white text-xs font-bold uppercase tracking-wider transition-colors duration-300 w-full ${
+        isRed ? 'bg-[#BE0D08] hover:bg-[#a10b07]' : 'bg-[#0E4194] hover:bg-[#1453B9]'
+      }`}>
         {children}
       </span>
     </div>

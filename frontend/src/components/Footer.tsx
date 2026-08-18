@@ -35,12 +35,12 @@ export default function Footer() {
                 <span className="font-extrabold text-xl tracking-tight text-white">
                   ABSOLUTE
                 </span>
-                <span className="text-[10px] uppercase tracking-widest font-semibold text-slate-400">
+                <span className="text-[10px] uppercase tracking-widest font-semibold text-slate-200">
                   Group Inc.
                 </span>
               </div>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-slate-200 leading-relaxed">
               {t('description')}
             </p>
           </div>
@@ -53,31 +53,31 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-slate-300">
               <li>
                 <Link href="/" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <Home className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <Home className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tNav('home')}
                 </Link>
               </li>
               <li>
                 <Link href="/about-us" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <Users className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <Users className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tNav('about')}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <Briefcase className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <Briefcase className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tNav('services')}
                 </Link>
               </li>
               <li>
                 <Link href="/blog" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <BookOpen className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <BookOpen className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tNav('blog')}
                 </Link>
               </li>
               <li>
                 <Link href="/contact-us" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <Mail className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <Mail className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tNav('contact')}
                 </Link>
               </li>
@@ -92,25 +92,25 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-slate-300">
               <li>
                 <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <Truck className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <Truck className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('ftlTitle')}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <RefreshCw className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <RefreshCw className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('borderTitle')}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <Map className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <Map className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('transloadingTitle')}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
-                  <Box className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  <Box className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('expeditedTitle')}
                 </Link>
               </li>
@@ -124,23 +124,23 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4 text-sm text-slate-300">
               <li className="flex items-start gap-3 group">
-                <MapPin className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors shrink-0 mt-0.5" />
                 <span className="group-hover:text-white transition-colors">{tContact('addressText')}</span>
               </li>
               <li className="flex items-center gap-3 group">
-                <Phone className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors shrink-0" />
+                <Phone className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors shrink-0" />
                 <a href="tel:9567276004" className="hover:text-white transition-colors">
                   {tContact('phoneText')}
                 </a>
               </li>
               <li className="flex items-center gap-3 group">
-                <Mail className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors shrink-0" />
+                <Mail className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors shrink-0" />
                 <a href="mailto:contact@absolute-fi.com" className="hover:text-white transition-colors">
                   {tContact('emailText')}
                 </a>
               </li>
               <li className="flex items-center gap-3 group">
-                <Clock className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors shrink-0" />
+                <Clock className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors shrink-0" />
                 <span className="group-hover:text-white transition-colors">{tContact('hoursText')}</span>
               </li>
             </ul>
@@ -177,3 +177,4 @@ export default function Footer() {
     </footer>
   );
 }
+

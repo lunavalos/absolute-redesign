@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '../navigation';
 import { ArrowRight, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import BorderBeamButton from './BorderBeamButton';
 import Grainient from './ui/Grainient';
 
@@ -23,7 +24,7 @@ export default function HeroSection() {
         poster="/images/hero-bg-2.jpg"
         className="absolute inset-0 w-full h-full object-cover opacity-35 z-0 scale-105"
       >
-        <source src="/images/hero-bg-1 (1).mp4" type="video/mp4" />
+        <source src="/images/Video hero.mp4" type="video/mp4" />
       </video>
 
       {/* ── CAPA 2: Grainient Background Animado ── */}
@@ -69,11 +70,20 @@ export default function HeroSection() {
           transition={{ duration: 0.85, ease: 'easeOut' }}
           className="flex flex-col items-center space-y-6"
         >
-          {/* Badge */}
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-400">
-            <Globe className="w-4 h-4" />
-            {t('badge')}
-          </span>
+          {/* Animated Logo Video */}
+          <div className="relative w-28 h-28 sm:w-48 sm:h-48 mx-auto mb-4">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-contain"
+            >
+              <source src="/images/Comp%201.webm" type="video/webm" />
+            </video>
+          </div>
+
+
 
           {/* Headline — 2 líneas, estilo Raycast */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] text-center">

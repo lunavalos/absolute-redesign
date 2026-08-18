@@ -36,11 +36,10 @@ export default function Header() {
     <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Floating Glass Header Container */}
       <div
-        style={{ background: '#0f182c' }}
         className={`w-full transition-all duration-300 rounded-2xl py-2.5 px-6 flex items-center justify-between border shadow-2xl backdrop-blur-2xl ${
           isScrolled
-            ? 'border-blue-400/40 shadow-[0_10px_40px_rgba(0,0,0,0.6)]'
-            : 'border-blue-400/20 shadow-[0_1px_0_0_rgba(255,255,255,0.05)_inset]'
+            ? 'bg-[#0f182c]/75 border-blue-400/40 shadow-[0_10px_40px_rgba(0,0,0,0.6)]'
+            : 'bg-[#0f182c]/95 border-blue-400/20 shadow-[0_1px_0_0_rgba(255,255,255,0.05)_inset]'
         }`}
       >
         {/* Brand Logo - Raw Logo Image ONLY */}

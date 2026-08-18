@@ -150,7 +150,7 @@ export default function ServicesSection() {
             {isEs ? 'Descubre todas las soluciones de Absolute Group' : 'Discover all Absolute Group solutions'}
           </p>
           <Link href="/services">
-            <BorderBeamButton>
+            <BorderBeamButton isRed={true}>
               {isEs ? 'Ver nuestros servicios' : 'View our services'}
               <ArrowRight className="w-3.5 h-3.5" />
             </BorderBeamButton>
