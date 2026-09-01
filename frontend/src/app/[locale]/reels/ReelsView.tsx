@@ -7,28 +7,23 @@ import { getMediaUrl, getYoutubeEmbedUrl } from '../../../data/api';
 import { Film, Play, X } from 'lucide-react';
 import Image from 'next/image';
 
+import PageHeader from '../../../components/PageHeader';
+
 export default function ReelsView({ reels, locale }: { reels: ReelDoc[], locale: 'en' | 'es' }) {
   const t = useTranslations('ReelsSection');
   const [activeModalReel, setActiveModalReel] = useState<ReelDoc | null>(null);
 
   return (
-    <div className="space-y-16 py-16 bg-slate-950 text-white min-h-screen">
+    <div className="space-y-16 pb-16 bg-slate-950 text-white min-h-screen">
       
-      {/* Header */}
-      <section className="bg-slate-900 border-b border-slate-800 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
-            <Film className="w-4 h-4" />
-            {t('badge')}
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
-            {t('title')}
-          </h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            {t('subtitle')}
-          </p>
-        </div>
-      </section>
+      {/* Header Banner with Background Video */}
+      <PageHeader
+        badge={t('badge')}
+        badgeIcon={<Film className="w-4 h-4" />}
+        title={t('title')}
+        subtitle={t('subtitle')}
+        align="center"
+      />
 
       {/* Main Reels Showcase */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

@@ -2,6 +2,8 @@ import { generatePageMetadata } from '../../../lib/seo';
 import ShapeGrid from '../../../components/ShapeGrid';
 import { MapPin, Globe, Truck, Timer, Warehouse, RefreshCw, Layers } from 'lucide-react';
 
+import PageHeader from '../../../components/PageHeader';
+
 export async function generateMetadata({
   params
 }: {
@@ -97,34 +99,12 @@ export default async function ServicesPage({
   return (
     <div className="bg-[#030712] min-h-screen pb-24">
       
-      {/* Hero Banner with ShapeGrid */}
-      <section className="relative bg-[#091C3D] text-white pt-32 pb-16 min-h-[35vh] flex flex-col justify-center overflow-hidden border-b border-white/5">
-        
-        {/* ShapeGrid Background */}
-        <div className="absolute inset-0 z-0">
-          <ShapeGrid
-            speed={0.25} 
-            squareSize={56}
-            direction='diagonal'
-            borderColor='rgba(255,255,255,0.04)'
-            hoverFillColor='rgba(255,255,255,0.08)'
-            shape='square'
-            hoverTrailAmount={8}
-          />
-        </div>
-
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4 pt-8">
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-400">
-            <Layers className="w-4 h-4" />
-            {isEs ? 'Oferta de Servicios' : 'Comprehensive Solutions'}
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl text-balance text-left leading-tight">
-            {isEs
-              ? 'Soluciones de Transporte Transfronterizo'
-              : 'Cross-Border Freight & Transportation Services'}
-          </h1>
-        </div>
-      </section>
+      {/* Hero Banner with Background Video */}
+      <PageHeader
+        badge={isEs ? 'Oferta de Servicios' : 'Comprehensive Solutions'}
+        badgeIcon={<Layers className="w-4 h-4" />}
+        title={isEs ? 'Soluciones de Transporte Transfronterizo' : 'Cross-Border Freight & Transportation Services'}
+      />
 
       {/* Dark Theme Services Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">

@@ -5,6 +5,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import { MapPin, Phone, Mail, Send, CheckCircle2, User, MessageSquare, Facebook, Instagram, Youtube, MessageCircle } from 'lucide-react';
 import ShapeGrid from '../../../components/ShapeGrid';
 
+import PageHeader from '../../../components/PageHeader';
+
 export default function ContactPage() {
   const t = useTranslations('Contact');
   const tServices = useTranslations('Services');
@@ -29,31 +31,13 @@ export default function ContactPage() {
   return (
     <div className="bg-[#041024] min-h-screen text-white pb-24 font-sans">
       
-      {/* Hero Banner with ShapeGrid */}
-      <section className="relative bg-[#091C3D] text-white pt-32 pb-16 mb-16 min-h-[35vh] flex flex-col justify-center overflow-hidden">
-        {/* ShapeGrid Background */}
-        <div className="absolute inset-0 z-0">
-          <ShapeGrid
-            speed={0.25} 
-            squareSize={56}
-            direction='diagonal'
-            borderColor='rgba(255,255,255,0.04)'
-            hoverFillColor='rgba(255,255,255,0.08)'
-            shape='square'
-            hoverTrailAmount={8}
-          />
-        </div>
-
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4 pt-8 text-center sm:text-left">
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-400">
-            <MessageSquare className="w-4 h-4" />
-            {t('badge')}
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl text-balance leading-tight">
-            {t('title')}
-          </h1>
-        </div>
-      </section>
+      {/* Hero Banner with Background Video */}
+      <PageHeader
+        badge={t('badge')}
+        badgeIcon={<MessageSquare className="w-4 h-4" />}
+        title={t('title')}
+        className="mb-16"
+      />
 
       {/* Main Grid Layout */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

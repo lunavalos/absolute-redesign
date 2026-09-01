@@ -5,6 +5,8 @@ import { Mail, Linkedin, ArrowRight, Users } from 'lucide-react';
 import ShapeGrid from '../../../components/ShapeGrid';
 import BorderBeamButton from '../../../components/BorderBeamButton';
 
+import PageHeader from '../../../components/PageHeader';
+
 export const dynamic = 'force-dynamic';
 
 export default async function TeamPage() {
@@ -17,32 +19,12 @@ export default async function TeamPage() {
   return (
     <div className="space-y-16 pb-24">
       
-      {/* Hero Banner with ShapeGrid */}
-      <section className="relative bg-[#091C3D] text-white pt-32 pb-16 min-h-[35vh] flex flex-col justify-center overflow-hidden">
-        
-        {/* ShapeGrid Background */}
-        <div className="absolute inset-0 z-0">
-          <ShapeGrid
-            speed={0.25} 
-            squareSize={56}
-            direction='diagonal'
-            borderColor='rgba(255,255,255,0.04)'
-            hoverFillColor='rgba(255,255,255,0.08)'
-            shape='square'
-            hoverTrailAmount={8}
-          />
-        </div>
-
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4 pt-8">
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-400">
-            <Users className="w-4 h-4" />
-            LEADERSHIP & OPERATIONS
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl text-balance text-left leading-tight">
-            {t('title')}
-          </h1>
-        </div>
-      </section>
+      {/* Hero Banner with Background Video */}
+      <PageHeader
+        badge="LEADERSHIP & OPERATIONS"
+        badgeIcon={<Users className="w-4 h-4" />}
+        title={t('title')}
+      />
 
       {/* Main Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +34,7 @@ export default async function TeamPage() {
           {team.map((member) => (
             <div
               key={member.id}
-              className="bg-blue-50 border border-blue-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col"
+              className="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md hover:bg-white hover:border-slate-300 transition-all duration-300 flex flex-col"
             >
               {/* Photo */}
               <div className="relative h-64 w-full rounded-xl overflow-hidden mb-5 bg-slate-100">

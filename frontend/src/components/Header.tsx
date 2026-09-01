@@ -85,7 +85,7 @@ export default function Header() {
           {/* Normal Client Login Button */}
           <Link
             href="/apply"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] bg-[#0E4194] hover:bg-[#1453B9] text-white text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95 shadow-lg"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] bg-[#BE0D08] hover:bg-[#a10b07] text-white text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95 shadow-lg"
           >
             <UserPlus className="w-3.5 h-3.5" />
             {isEs ? 'Únete al team' : 'Join the team'}
@@ -139,7 +139,7 @@ export default function Header() {
             <Link
               href="/apply"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0E4194] rounded-xl shadow-md"
+              className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#BE0D08] hover:bg-[#a10b07] rounded-xl shadow-md"
             >
               <UserPlus className="w-4 h-4" />
               {isEs ? 'Únete al team' : 'Join the team'}

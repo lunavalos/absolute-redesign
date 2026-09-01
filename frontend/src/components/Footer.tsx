@@ -14,7 +14,7 @@ export default function Footer() {
   const isEs = locale === 'es';
 
   return (
-    <footer className="bg-[#0E4194] text-slate-200 pt-16 pb-8 border-t border-slate-800/50">
+    <footer className="bg-[#051430] text-slate-200 pt-16 pb-8 border-t border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Grid */}

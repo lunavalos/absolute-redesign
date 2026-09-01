@@ -8,6 +8,8 @@ import CursorGrid from '../../../components/CursorGrid';
 import ClientsCarousel from '../../../components/ClientsCarousel';
 import Certifications from '../../../components/Certifications';
 
+import PageHeader from '../../../components/PageHeader';
+
 interface AboutUsClientProps {
   isEs: boolean;
 }
@@ -16,40 +18,12 @@ export default function AboutUsClient({ isEs }: AboutUsClientProps) {
   return (
     <div className="bg-[#030b14] min-h-screen">
       
-      {/* 1. Hero Banner (Grid) */}
-      <section className="relative bg-[#041024] text-white pt-32 pb-16 min-h-[35vh] flex flex-col justify-center overflow-hidden">
-        
-        {/* ShapeGrid Background */}
-        <div className="absolute inset-0 z-0">
-          <ShapeGrid
-            speed={0.25} 
-            squareSize={56}
-            direction='diagonal'
-            borderColor='rgba(255,255,255,0.04)'
-            hoverFillColor='rgba(255,255,255,0.08)'
-            shape='square'
-            hoverTrailAmount={8}
-          />
-        </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4 pt-8"
-        >
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-400">
-            <Building2 className="w-4 h-4" />
-            {isEs ? 'Nuestra Historia y Trayectoria' : 'Our Story & Legacy'}
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl text-balance text-left leading-tight text-white">
-            {isEs
-              ? 'Líderes en Logística Transfronteriza'
-              : 'Pioneering Cross-Border Logistics'}
-          </h1>
-        </motion.div>
-      </section>
+      {/* 1. Hero Banner with Background Video + Animated Grid */}
+      <PageHeader
+        badge={isEs ? 'Nuestra Historia y Trayectoria' : 'Our Story & Legacy'}
+        badgeIcon={<Building2 className="w-4 h-4" />}
+        title={isEs ? 'Líderes en Logística Transfronteriza' : 'Pioneering Cross-Border Logistics'}
+      />
 
       {/* 2. History & Expertise (Solid) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 bg-[#030b14]">

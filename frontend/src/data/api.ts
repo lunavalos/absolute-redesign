@@ -32,8 +32,19 @@ async function fetchFromPayload<T>(endpoint: string, locale: string, revalidate:
     const data = await res.json();
     return data as T;
   } catch (error) {
-    console.error(`[Payload API Error]: ${error}`);
-    throw error;
+    console.error(`[Payload API Error]: No se pudo conectar a ${url.toString()}. ¿El backend está corriendo en ${API_URL}?`, error);
+    return {
+      docs: [],
+      totalDocs: 0,
+      limit: 0,
+      totalPages: 0,
+      page: 1,
+      pagingCounter: 0,
+      hasPrevPage: false,
+      hasNextPage: false,
+      prevPage: null,
+      nextPage: null,
+    } as unknown as T;
   }
 }
 
