@@ -29,9 +29,12 @@ export async function generateMetadata({
     });
   }
 
+  const postTitle = typeof post.title === 'string' ? post.title : (post.title as any)?.[locale] || (post.title as any)?.[locale === 'es' ? 'en' : 'es'] || '';
+  const postExcerpt = typeof post.excerpt === 'string' ? post.excerpt : (post.excerpt as any)?.[locale] || (post.excerpt as any)?.[locale === 'es' ? 'en' : 'es'] || '';
+
   return generatePageMetadata({
-    title: post.title,
-    description: post.excerpt,
+    title: postTitle,
+    description: postExcerpt,
     locale,
     path: `/blog/${post.slug}`,
     ogImage: post.heroImage?.url
@@ -51,13 +54,15 @@ export default async function BlogPostPage({
   const isEs = locale === 'es';
   const isLight = post.theme === 'light';
   const articleBg = isLight ? 'bg-white text-slate-900' : 'bg-[#030712] text-slate-300';
+  const postTitle = typeof post.title === 'string' ? post.title : (post.title as any)?.[locale] || (post.title as any)?.[locale === 'es' ? 'en' : 'es'] || '';
+  const postExcerpt = typeof post.excerpt === 'string' ? post.excerpt : (post.excerpt as any)?.[locale] || (post.excerpt as any)?.[locale === 'es' ? 'en' : 'es'] || '';
 
   // Article JSON-LD Schema
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    'headline': post.title,
-    'description': post.excerpt,
+    'headline': postTitle,
+    'description': postExcerpt,
     'image': `https://absolute-fi.com${post.heroImage?.url}`,
     'datePublished': post.publishedAt,
     'author': {
@@ -106,7 +111,7 @@ export default async function BlogPostPage({
             </Link>
 
             <h1 className="text-[46px] font-extrabold text-white tracking-tight leading-tight max-w-4xl text-balance">
-              {post.title}
+              {postTitle}
             </h1>
 
             <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm font-medium text-slate-400 border-t border-white/10 pt-6">

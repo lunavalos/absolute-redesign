@@ -1,6 +1,6 @@
 import { BlogPostDoc, PayloadResponse } from './types';
 
-export const mockBlogData: PayloadResponse<BlogPostDoc> = {
+export const mockBlogData: any = {
   docs: [
     {
       id: 'blog-1',

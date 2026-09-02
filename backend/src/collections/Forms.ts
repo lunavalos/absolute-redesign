@@ -1,4 +1,4 @@
-import { APIError } from 'payload'
+import { APIError, CollectionConfig } from 'payload'
 
 
 export const Forms: CollectionConfig = {

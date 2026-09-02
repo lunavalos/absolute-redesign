@@ -88,7 +88,7 @@ export default function Header() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] bg-[#BE0D08] hover:bg-[#a10b07] text-white text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95 shadow-lg"
           >
             <UserPlus className="w-3.5 h-3.5" />
-            {isEs ? 'Únete al team' : 'Join the team'}
+            {isEs ? 'Únete al equipo' : 'Join the team'}
           </Link>
         </div>
 

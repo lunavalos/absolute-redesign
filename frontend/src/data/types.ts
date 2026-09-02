@@ -66,23 +66,24 @@ export interface BlogPostDoc {
   
   // Contenido Principal
   title: string;
-  excerpt: string;
+  excerpt?: string;
   heroImage: PayloadMedia;
   content: any[]; // Bloques Dinámicos (RichText, Images, etc.)
+  theme?: 'light' | 'dark';
   
   // Clasificación & Metadatos
   author: PayloadAuthor;
   category: PayloadCategory;
   tags: PayloadTag[];
-  tenant: PayloadTenant;
+  tenant?: PayloadTenant;
   
   publishedAt: string;
-  readingTimeMinutes: number;
-  featuredPost: boolean;
+  readingTimeMinutes?: number;
+  featuredPost?: boolean;
   slug: string;
   
   // SEO Avanzado
-  meta: {
+  meta?: {
     title?: string;
     description?: string;
     canonicalUrl?: string;

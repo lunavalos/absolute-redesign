@@ -1,6 +1,6 @@
 import { PayloadResponse, TeamMemberDoc } from './types';
 
-export const mockTeamData: PayloadResponse<TeamMemberDoc> = {
+export const mockTeamData: any = {
   docs: [
     {
       id: 'team-1',

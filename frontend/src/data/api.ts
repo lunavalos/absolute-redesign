@@ -7,13 +7,11 @@ const API_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3001';
  */
 async function fetchFromPayload<T>(endpoint: string, locale: string, revalidate: number = 60): Promise<T> {
   const url = new URL(`${API_URL}/api/${endpoint}`);
-  // Enviar el parámetro locale para traer contenido traducido
-  // Usamos locale=all para que retorne { en, es } si queremos manejarlo en frontend, 
-  // o el string directo si Payload lo resuelve. Payload 3 resuelve directamente
-  // el string en el idioma solicitado cuando usamos ?locale=en.
   url.searchParams.append('locale', locale);
-  // Optional: fallback locale if translation is missing
-  url.searchParams.append('fallback-locale', 'es');
+  // Fallback al otro idioma disponible si no existe traducción en el idioma solicitado
+  const fallbackLocale = locale === 'es' ? 'en' : 'es';
+  url.searchParams.append('fallback-locale', fallbackLocale);
+  url.searchParams.append('fallbackLocale', fallbackLocale);
 
   try {
     const isDev = process.env.NODE_ENV === 'development';

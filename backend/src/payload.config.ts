@@ -56,7 +56,18 @@ export default buildConfig({
   }),
   sharp,
   localization: {
-    locales: ['en', 'es'],
+    locales: [
+      {
+        code: 'en',
+        label: 'English',
+        fallbackLocale: 'es',
+      },
+      {
+        code: 'es',
+        label: 'Español',
+        fallbackLocale: 'en',
+      },
+    ],
     defaultLocale: 'en',
     fallback: true,
   },

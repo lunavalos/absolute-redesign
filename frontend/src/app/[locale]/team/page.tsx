@@ -54,9 +54,9 @@ export default async function TeamPage() {
                   {member.name}
                 </h3>
                 <p className="text-sm font-medium text-[#0E4194] mb-2">
-                  {typeof member.position === 'string' 
+                  {typeof member.position === 'string' && member.position
                     ? member.position 
-                    : (member.position as any)?.es || (member.position as any)?.en || 'Puesto no asignado'}
+                    : (member.position as any)?.[locale] || (member.position as any)?.[locale === 'es' ? 'en' : 'es'] || (typeof member.position === 'string' ? member.position : '')}
                 </p>
               </div>
 

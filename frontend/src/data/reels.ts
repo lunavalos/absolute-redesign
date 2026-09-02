@@ -1,6 +1,6 @@
 import { PayloadResponse, ReelDoc } from './types';
 
-export const mockReelsData: PayloadResponse<ReelDoc> = {
+export const mockReelsData: any = {
   docs: [
     {
       id: 'reel-1',
