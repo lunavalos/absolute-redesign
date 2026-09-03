@@ -60,7 +60,7 @@ export const BlocksRenderer: React.FC<{ blocks: PayloadBlock[], theme?: 'light' 
         switch (block.blockType) {
           case 'richText':
             return (
-              <div key={index} className={`max-w-4xl mx-auto w-full prose ${!isLight ? 'prose-invert' : 'prose-slate'}`}>
+              <div key={index} className={`max-w-7xl mx-auto w-full prose max-w-none ${!isLight ? 'prose-invert' : 'prose-slate'}`}>
                 <LexicalRenderer data={block.content} />
               </div>
             );
@@ -68,7 +68,7 @@ export const BlocksRenderer: React.FC<{ blocks: PayloadBlock[], theme?: 'light' 
           case 'imageAndText': {
             const isLeft = block.imagePosition === 'left';
             return (
-              <div key={index} className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div key={index} className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className={`relative h-[400px] w-full rounded-2xl overflow-hidden ${!isLeft ? 'md:order-2' : ''}`}>
                   {block.image && (
                     <Image 
@@ -79,7 +79,7 @@ export const BlocksRenderer: React.FC<{ blocks: PayloadBlock[], theme?: 'light' 
                     />
                   )}
                 </div>
-                <div className={`prose ${!isLight ? 'prose-invert' : 'prose-slate'}`}>
+                <div className={`prose max-w-none ${!isLight ? 'prose-invert' : 'prose-slate'}`}>
                   <LexicalRenderer data={block.content} />
                 </div>
               </div>
@@ -88,7 +88,7 @@ export const BlocksRenderer: React.FC<{ blocks: PayloadBlock[], theme?: 'light' 
 
           case 'cta':
             return (
-              <div key={index} className="w-full bg-[#091C3D] rounded-3xl p-10 sm:p-16 text-center text-white flex flex-col items-center shadow-xl my-12">
+              <div key={index} className="max-w-7xl mx-auto w-full bg-[#091C3D] rounded-3xl p-10 sm:p-16 text-center text-white flex flex-col items-center shadow-xl my-12">
                 <h3 className="text-3xl sm:text-4xl font-extrabold mb-4">{block.title}</h3>
                 {block.description && (
                   <p className="text-slate-300 text-sm sm:text-base max-w-2xl mb-8 leading-relaxed">{block.description}</p>
@@ -102,7 +102,7 @@ export const BlocksRenderer: React.FC<{ blocks: PayloadBlock[], theme?: 'light' 
 
           case 'features':
             return (
-              <div key={index} className="max-w-6xl mx-auto w-full py-12">
+              <div key={index} className="max-w-7xl mx-auto w-full py-12">
                 <div className="text-center mb-16">
                   <h2 className={`text-3xl md:text-5xl font-extrabold mb-4 ${isLight ? 'text-slate-900' : 'text-white'}`}>{block.title}</h2>
                   {block.subtitle && <p className={`text-xl max-w-3xl mx-auto ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>{block.subtitle}</p>}
@@ -123,7 +123,7 @@ export const BlocksRenderer: React.FC<{ blocks: PayloadBlock[], theme?: 'light' 
 
           case 'faq':
             return (
-              <div key={index} className="max-w-4xl mx-auto w-full py-12">
+              <div key={index} className="max-w-7xl mx-auto w-full py-12">
                 <div className="text-center mb-12">
                   <h2 className={`text-3xl md:text-5xl font-extrabold mb-4 ${isLight ? 'text-slate-900' : 'text-white'}`}>{block.title}</h2>
                   {block.subtitle && <p className={`text-xl ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>{block.subtitle}</p>}

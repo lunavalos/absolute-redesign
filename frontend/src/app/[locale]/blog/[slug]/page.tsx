@@ -110,7 +110,7 @@ export default async function BlogPostPage({
               {isEs ? 'Regresar al Blog' : 'Back to Blog'}
             </Link>
 
-            <h1 className="text-[46px] font-extrabold text-white tracking-tight leading-tight max-w-4xl text-balance">
+            <h1 className="text-[46px] font-extrabold text-white tracking-tight leading-tight max-w-7xl text-balance">
               {postTitle}
             </h1>
 
