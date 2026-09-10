@@ -118,3 +118,10 @@
   animation: float-blob 18s ease-in-out 4s infinite reverse;
   will-change: transform;
 }
+
+/* Hide Google ReCaptcha v3 Floating Badge cleanly */
+.grecaptcha-badge {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

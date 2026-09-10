@@ -2,9 +2,9 @@
 
 import { useState, FormEvent } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { MapPin, Phone, Mail, Send, CheckCircle2, User, MessageSquare, Facebook, Instagram, Youtube, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, CheckCircle2, User, MessageSquare, Facebook, Instagram, Youtube, MessageCircle, Loader2, AlertCircle } from 'lucide-react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import ShapeGrid from '../../../components/ShapeGrid';
-
 import PageHeader from '../../../components/PageHeader';
 
 export default function ContactPage() {
@@ -13,7 +13,10 @@ export default function ContactPage() {
   const locale = useLocale() as 'en' | 'es';
   const isEs = locale === 'es';
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,9 +26,40 @@ export default function ContactPage() {
     message: ''
   });
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      if (!executeRecaptcha) {
+        throw new Error(isEs ? 'ReCAPTCHA no se ha cargado aún. Intenta en un momento.' : 'ReCAPTCHA is not loaded yet. Please try again in a moment.');
+      }
+
+      const token = await executeRecaptcha('contact_form_submit');
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken: token,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || (isEs ? 'Error al enviar la solicitud.' : 'Failed to submit inquiry.'));
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error('[Contact Submit Error]:', err);
+      setErrorMessage(err.message || (isEs ? 'Ocurrió un error. Intenta de nuevo.' : 'An error occurred. Please try again.'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -176,6 +210,13 @@ export default function ContactPage() {
               </p>
             </div>
 
+            {errorMessage && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-medium flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -275,13 +316,43 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 bg-[#21356F] border border-[#30478D] hover:bg-[#2B4286] text-white text-xs font-bold uppercase tracking-[0.15em] rounded-xl shadow-[0_0_15px_rgba(33,53,111,0.5)] hover:shadow-[0_0_25px_rgba(43,66,134,0.7)] transition-all duration-300"
-              >
-                {isEs ? 'Enviar Solicitud de Cotización' : 'Send Quote Request'}
-                <Send className="w-4 h-4 ml-2" />
-              </button>
+              <div className="space-y-3">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 bg-[#21356F] border border-[#30478D] hover:bg-[#2B4286] text-white text-xs font-bold uppercase tracking-[0.15em] rounded-xl shadow-[0_0_15px_rgba(33,53,111,0.5)] hover:shadow-[0_0_25px_rgba(43,66,134,0.7)] transition-all duration-300 disabled:opacity-75 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      {isEs ? 'Verificando...' : 'Verifying...'}
+                    </>
+                  ) : (
+                    <>
+                      {isEs ? 'Enviar Solicitud de Cotización' : 'Send Quote Request'}
+                      <Send className="w-4 h-4 ml-2" />
+                    </>
+                  )}
+                </button>
+
+                <p className="text-[10px] text-slate-500 text-center leading-relaxed">
+                  {isEs ? (
+                    <>
+                      Este sitio está protegido por reCAPTCHA y se aplican la{' '}
+                      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400">Política de Privacidad</a>{' '}
+                      y los{' '}
+                      <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400">Términos de Servicio</a> de Google.
+                    </>
+                  ) : (
+                    <>
+                      This site is protected by reCAPTCHA and the Google{' '}
+                      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400">Privacy Policy</a>{' '}
+                      and{' '}
+                      <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400">Terms of Service</a> apply.
+                    </>
+                  )}
+                </p>
+              </div>
             </form>
           </div>
 

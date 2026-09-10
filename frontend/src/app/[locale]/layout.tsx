@@ -13,6 +13,8 @@ const rubik = Rubik({
   display: 'swap'
 });
 
+import ReCaptchaProvider from '../../components/ReCaptchaProvider';
+
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];
 }
@@ -68,11 +70,13 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="font-sans antialiased bg-white text-slate-900 min-h-screen flex flex-col justify-between">
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
+        <ReCaptchaProvider>
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </NextIntlClientProvider>
+        </ReCaptchaProvider>
       </body>
     </html>
   );
