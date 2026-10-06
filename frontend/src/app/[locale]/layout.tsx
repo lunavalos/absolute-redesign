@@ -69,7 +69,7 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased bg-white text-slate-900 min-h-screen flex flex-col justify-between">
+      <body className={`font-sans antialiased bg-white text-slate-900 min-h-screen flex flex-col justify-between ${rubik.variable}`}>
         <ReCaptchaProvider>
           <NextIntlClientProvider messages={messages} locale={locale}>
             <Header />
