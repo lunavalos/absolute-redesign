@@ -1,7 +1,7 @@
 import React from 'react'
 import type { DefaultCellComponentProps } from 'payload'
 
-export const ScoreCell: React.FC<DefaultCellComponentProps<number>> = ({ cellData }) => {
+export const ScoreCell: React.FC<any> = ({ cellData }) => {
   if (typeof cellData !== 'number') return <span>-</span>
 
   let bgColor = 'transparent'
