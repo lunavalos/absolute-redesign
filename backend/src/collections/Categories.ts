@@ -3,7 +3,7 @@ import { CollectionConfig } from 'payload'
 export const Categories: CollectionConfig = {
   slug: 'categories',
   access: {
-    read: () => true,
+    read: () => true, create: () => true, update: () => true, delete: () => true,
   },
   admin: {
     useAsTitle: 'name',
