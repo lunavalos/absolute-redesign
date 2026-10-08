@@ -164,6 +164,7 @@ export const Posts: CollectionConfig = {
               name: 'slug',
               type: 'text',
               required: true,
+              localized: true,
               label: 'Slug (URL)',
               admin: {
                 description: 'Se autogenera a partir del campo original si se deja vacío.',
