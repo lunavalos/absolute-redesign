@@ -10,6 +10,10 @@ export const Posts: CollectionConfig = {
   slug: 'posts',
   access: {
     read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+    readVersions: ({ req: { user } }) => Boolean(user),
   },
   admin: {
     useAsTitle: 'title',
