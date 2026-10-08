@@ -8,7 +8,7 @@ export const Tags: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     components: {
-      Icon: '../components/NavIcons#TagsIcon',
+
     },
   },
   labels: {

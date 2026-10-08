@@ -8,7 +8,7 @@ export const Team: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     components: {
-      Icon: '@/components/NavIcons#TeamIcon',
+
     },
   },
   labels: {

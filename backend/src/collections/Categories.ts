@@ -8,7 +8,7 @@ export const Categories: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     components: {
-      Icon: '../components/NavIcons#CategoriesIcon',
+
     },
   },
   labels: {

@@ -24,7 +24,7 @@ export const Users: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'email', 'role'],
     components: {
-      Icon: '../components/NavIcons#UsersIcon',
+
     },
   },
   labels: {

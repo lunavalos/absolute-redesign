@@ -8,7 +8,7 @@ export const Reels: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     components: {
-      Icon: '../components/NavIcons#ReelsIcon',
+
     },
   },
   labels: {

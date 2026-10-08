@@ -14,7 +14,7 @@ export const Posts: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     components: {
-      Icon: '../components/NavIcons#PostsIcon',
+
     },
     defaultColumns: ['title', 'slug', 'category', 'publishedAt'],
     livePreview: {

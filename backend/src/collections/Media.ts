@@ -9,7 +9,7 @@ export const Media: CollectionConfig = {
   admin: {
     description: 'Espacio para subir imágenes, íconos y PDFs corporativos.',
     components: {
-      Icon: '@/components/NavIcons#MediaIcon',
+
     },
   },
   fields: [

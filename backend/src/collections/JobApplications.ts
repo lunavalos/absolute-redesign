@@ -12,7 +12,7 @@ export const JobApplications: CollectionConfig = {
     defaultColumns: ['applicantName', 'email', 'totalScore', 'createdAt'],
     description: 'Respuestas a los cuestionarios de empleo.',
     components: {
-      Icon: '../components/NavIcons#JobApplicationIcon',
+
     },
   },
   labels: {
