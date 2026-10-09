@@ -63,7 +63,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Copy media files to a seed directory so they can be injected into the volume
 COPY --from=builder --chown=nextjs:nodejs /app/media ./media_seed
 
-USER nextjs
+# Commented out to allow writing to the persistent volume mounted by Coolify
+# USER nextjs
 
 EXPOSE 3000
 
