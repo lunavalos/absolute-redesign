@@ -60,6 +60,9 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Copy media files to a seed directory so they can be injected into the volume
+COPY --from=builder --chown=nextjs:nodejs /app/media ./media_seed
+
 USER nextjs
 
 EXPOSE 3000
@@ -68,4 +71,4 @@ ENV PORT 3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD cp -rn ./media_seed/* ./media/ 2>/dev/null || true && HOSTNAME="0.0.0.0" node server.js
