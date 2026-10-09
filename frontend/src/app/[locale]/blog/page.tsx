@@ -26,9 +26,9 @@ export default async function BlogListingPage() {
 
       {/* Blog Post Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap gap-8 justify-start">
+        <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(340px,1fr))] gap-8">
           {posts.map((post) => (
-            <article key={post.id} className="relative w-full sm:w-[400px] h-[480px] rounded-2xl overflow-hidden group shadow-lg">
+            <article key={post.id} className="relative w-full h-[480px] rounded-2xl overflow-hidden group shadow-lg">
               <Image
                 src={getMediaUrl(post.heroImage?.url)}
                 alt={post.heroImage?.alt || post.title}
