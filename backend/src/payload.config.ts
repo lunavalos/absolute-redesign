@@ -22,6 +22,8 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL || '',
   cors: '*',
+  cookiePrefix: 'payload',
+
   admin: {
     user: Users.slug,
     components: {
