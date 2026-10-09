@@ -26,6 +26,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(dirname),
   },
+  serverActions: {
+    allowedOrigins: ['localhost:3000', '*.sslip.io'],
+  },
   output: 'standalone',
 }
 
