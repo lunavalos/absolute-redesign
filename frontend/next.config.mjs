@@ -20,6 +20,10 @@ const nextConfig = {
         hostname: 'absolute-fi.com'
       },
       {
+        protocol: 'https',
+        hostname: 'admin.absolute-fi.com'
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '3001'
