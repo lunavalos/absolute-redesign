@@ -23,7 +23,8 @@ export const Posts: CollectionConfig = {
     defaultColumns: ['title', 'slug', 'category', 'publishedAt'],
     livePreview: {
       url: ({ data }) => {
-        return `http://localhost:3000/blog/${data.slug}?preview=true`
+        const frontendUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:3000'
+        return `${frontendUrl}/blog/${data.slug}?preview=true`
       },
     },
   },
