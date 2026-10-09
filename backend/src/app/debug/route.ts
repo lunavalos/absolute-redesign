@@ -12,13 +12,13 @@ export async function GET() {
     
     try {
       mediaFiles = fs.readdirSync(mediaDir)
-    } catch (e) {
+    } catch (e: any) {
       mediaFiles = [e.message]
     }
     
     try {
       seedFiles = fs.readdirSync(seedDir)
-    } catch (e) {
+    } catch (e: any) {
       seedFiles = [e.message]
     }
     
@@ -29,7 +29,7 @@ export async function GET() {
       mediaFiles,
       seedFiles
     })
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }
