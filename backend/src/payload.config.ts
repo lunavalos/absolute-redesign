@@ -20,8 +20,8 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL || '',
   cors: '*',
-  csrf: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001'],
   admin: {
     user: Users.slug,
     components: {
