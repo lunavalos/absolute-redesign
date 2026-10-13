@@ -53,8 +53,26 @@ export const LexicalRenderer: React.FC<{ data: any }> = ({ data }) => {
       
       case 'paragraph': {
         const pNode = node as ElementNode;
+        const firstChildText = (pNode.children?.[0] as TextNode)?.text;
+        if (pNode.children?.length === 1 && firstChildText && typeof firstChildText === 'string') {
+          const ytMatch = firstChildText.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+          if (ytMatch) {
+            const videoId = ytMatch[1];
+            return (
+              <div key={index} className="my-10 aspect-video max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                  title="YouTube video"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            );
+          }
+        }
         return (
-          <p key={index} className="mb-4">
+          <p key={index} className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 font-normal">
             {pNode.children.map((child, i) => renderNode(child, i))}
           </p>
         );
@@ -63,9 +81,10 @@ export const LexicalRenderer: React.FC<{ data: any }> = ({ data }) => {
       case 'heading': {
         const hNode = node as ElementNode;
         const tag = hNode.tag || 'h2';
-        const className = tag === 'h1' ? 'text-4xl font-bold mb-6' : 
-                          tag === 'h2' ? 'text-3xl font-bold mb-5 mt-8' : 
-                          tag === 'h3' ? 'text-2xl font-bold mb-4 mt-6' : 'text-xl font-bold mb-3 mt-4';
+        const className = tag === 'h1' ? 'text-3xl sm:text-4xl font-extrabold text-white mt-14 mb-6 tracking-tight' : 
+                          tag === 'h2' ? 'text-2xl sm:text-3xl font-extrabold text-white mt-12 mb-5 border-b border-white/10 pb-3 tracking-tight' : 
+                          tag === 'h3' ? 'text-xl sm:text-2xl font-bold text-blue-300 mt-8 mb-4' : 
+                          'text-lg sm:text-xl font-bold text-white mb-3 mt-6';
         const HeadingTag = tag as keyof JSX.IntrinsicElements;
         return (
           <HeadingTag key={index} className={className}>
@@ -76,21 +95,26 @@ export const LexicalRenderer: React.FC<{ data: any }> = ({ data }) => {
 
       case 'list': {
         const listNode = node as ElementNode;
-        const tag = listNode.listType === 'number' ? 'ol' : 'ul';
-        const ListTag = tag as keyof JSX.IntrinsicElements;
-        const className = tag === 'ol' ? 'list-decimal ml-6 mb-4' : 'list-disc ml-6 mb-4';
-        return (
-          <ListTag key={index} className={className}>
+        const isNum = listNode.listType === 'number';
+        return isNum ? (
+          <ol key={index} className="list-decimal pl-6 mb-8 space-y-3 text-slate-300 text-base sm:text-lg">
             {listNode.children.map((child, i) => renderNode(child, i))}
-          </ListTag>
+          </ol>
+        ) : (
+          <ul key={index} className="space-y-3.5 mb-8 pl-1">
+            {listNode.children.map((child, i) => renderNode(child, i))}
+          </ul>
         );
       }
 
       case 'listitem': {
         const listItemNode = node as ElementNode;
         return (
-          <li key={index} className="mb-2">
-            {listItemNode.children.map((child, i) => renderNode(child, i))}
+          <li key={index} className="text-slate-300 text-base sm:text-lg leading-relaxed flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-blue-400 mt-2.5 shrink-0 shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
+            <div className="flex-1">
+              {listItemNode.children.map((child, i) => renderNode(child, i))}
+            </div>
           </li>
         );
       }
@@ -98,7 +122,7 @@ export const LexicalRenderer: React.FC<{ data: any }> = ({ data }) => {
       case 'quote': {
         const quoteNode = node as ElementNode;
         return (
-          <blockquote key={index} className="border-l-4 border-primary pl-4 py-1 italic mb-6 bg-gray-50 dark:bg-gray-800/50">
+          <blockquote key={index} className="border-l-4 border-blue-500 pl-6 py-3 italic my-8 text-slate-200 bg-blue-950/20 rounded-r-2xl border-solid text-lg">
             {quoteNode.children.map((child, i) => renderNode(child, i))}
           </blockquote>
         );
@@ -114,7 +138,7 @@ export const LexicalRenderer: React.FC<{ data: any }> = ({ data }) => {
             href={url} 
             target={newTab ? '_blank' : '_self'}
             rel={newTab ? 'noopener noreferrer' : ''}
-            className="text-primary hover:underline"
+            className="text-blue-400 hover:text-blue-300 font-semibold underline underline-offset-4 transition-colors"
           >
             {linkNode.children.map((child, i) => renderNode(child, i))}
           </a>

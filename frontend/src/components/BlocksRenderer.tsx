@@ -60,7 +60,7 @@ export const BlocksRenderer: React.FC<{ blocks: PayloadBlock[], theme?: 'light' 
         switch (block.blockType) {
           case 'richText':
             return (
-              <div key={index} className={`max-w-7xl mx-auto w-full prose max-w-none ${!isLight ? 'prose-invert' : 'prose-slate'}`}>
+              <div key={index} className={`max-w-4xl mx-auto w-full prose max-w-none ${!isLight ? 'prose-invert' : 'prose-slate'}`}>
                 <LexicalRenderer data={block.content} />
               </div>
             );
