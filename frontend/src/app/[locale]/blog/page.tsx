@@ -57,7 +57,7 @@ export default async function BlogListingPage() {
                   
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-1.5 text-blue-300 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors"
+                    className="inline-flex items-center gap-1.5 text-blue-300 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors after:absolute after:inset-0"
                   >
                     {locale === 'es' ? 'Leer Artículo' : 'Read Article'}
                     <ArrowRight className="w-3.5 h-3.5" />

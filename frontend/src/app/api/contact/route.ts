@@ -37,27 +37,24 @@ export async function POST(req: Request) {
       );
     }
 
-    // 2. Configurar Servidor de Correo (Microsoft 365 / SMTP)
-    const smtpHost = process.env.SMTP_HOST || 'smtp.office365.com';
+    // 2. Configurar Servidor de Correo (Brevo / SMTP)
+    const smtpHost = process.env.SMTP_HOST || 'smtp-relay.brevo.com';
     const smtpPort = parseInt(process.env.SMTP_PORT || '587', 10);
-    const smtpUser = process.env.SMTP_USER || 'contact@absolute-fi.com';
-    const smtpPass = process.env.SMTP_PASS;
+    const smtpUser = process.env.SMTP_USER || '';
+    const smtpPass = process.env.SMTP_PASS || '';
+    const smtpFrom = process.env.SMTP_FROM || smtpUser;
 
     // Lista de correos receptores
     const recipients = process.env.CONTACT_RECIPIENTS || 'contact@absolute-fi.com, orlando@absolute-fi.com, contacto@lunavalos.com';
 
-    if (smtpPass) {
+    if (smtpPass && smtpUser) {
       const transporter = nodemailer.createTransport({
         host: smtpHost,
         port: smtpPort,
-        secure: false, // TLS en puerto 587 (STARTTLS)
+        secure: smtpPort === 465,
         auth: {
           user: smtpUser,
           pass: smtpPass,
-        },
-        tls: {
-          ciphers: 'SSLv3',
-          rejectUnauthorized: false,
         },
       });
 
@@ -121,7 +118,7 @@ export async function POST(req: Request) {
       `;
 
       await transporter.sendMail({
-        from: `"Absolute Group Web" <${smtpUser}>`,
+        from: `"Absolute Group Web" <${smtpFrom}>`,
         to: recipients,
         replyTo: email,
         subject: `Nueva Cotización Web: ${name} (${company || service})`,
