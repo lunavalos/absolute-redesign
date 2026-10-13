@@ -146,6 +146,25 @@ export const Forms: CollectionConfig = {
               max: 100,
               label: 'Puntuación (0-100)',
             },
+            {
+              name: 'requiresExplanation',
+              type: 'checkbox',
+              label: '¿Requiere que el candidato explique o detalle?',
+              defaultValue: false,
+              admin: {
+                description: 'Si se activa, al seleccionar esta opción se abrirá un campo de texto adicional obligatorio para que el candidato detalle su respuesta.',
+              },
+            },
+            {
+              name: 'explanationPlaceholder',
+              type: 'text',
+              localized: true,
+              label: 'Instrucción o Placeholder (Opcional)',
+              admin: {
+                condition: (data, siblingData) => Boolean(siblingData?.requiresExplanation),
+                description: 'Ejemplo: "Por favor explica el motivo y fecha..."',
+              },
+            },
           ],
         },
       ],

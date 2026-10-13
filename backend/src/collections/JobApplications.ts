@@ -75,6 +75,15 @@ export const JobApplications: CollectionConfig = {
           label: 'Respuesta',
         },
         {
+          name: 'explanation',
+          type: 'textarea',
+          label: 'Explicación / Detalle del Candidato',
+          admin: {
+            condition: (data, siblingData) => Boolean(siblingData?.explanation),
+            description: 'Detalle o justificación proporcionada por el candidato para esta respuesta.',
+          },
+        },
+        {
           name: 'score',
           type: 'number',
           label: 'Puntos Obtenidos',

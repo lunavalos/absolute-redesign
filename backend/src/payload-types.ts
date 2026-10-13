@@ -405,6 +405,14 @@ export interface Form {
       | {
           label: string;
           score: number;
+          /**
+           * Si se activa, al seleccionar esta opción se abrirá un campo de texto adicional obligatorio para que el candidato detalle su respuesta.
+           */
+          requiresExplanation?: boolean | null;
+          /**
+           * Ejemplo: "Por favor explica el motivo y fecha..."
+           */
+          explanationPlaceholder?: string | null;
           id?: string | null;
         }[]
       | null;
@@ -436,6 +444,10 @@ export interface JobApplication {
     | {
         question?: string | null;
         answerText?: string | null;
+        /**
+         * Detalle o justificación proporcionada por el candidato para esta respuesta.
+         */
+        explanation?: string | null;
         score?: number | null;
         attachment?: (number | null) | Media;
         id?: string | null;
@@ -732,6 +744,8 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               label?: T;
               score?: T;
+              requiresExplanation?: T;
+              explanationPlaceholder?: T;
               id?: T;
             };
         id?: T;
@@ -754,6 +768,7 @@ export interface JobApplicationsSelect<T extends boolean = true> {
     | {
         question?: T;
         answerText?: T;
+        explanation?: T;
         score?: T;
         attachment?: T;
         id?: T;
