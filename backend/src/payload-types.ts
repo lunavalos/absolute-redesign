@@ -394,30 +394,69 @@ export interface Form {
    * Si está activo, se mostrará en la página de aplicación. Asegúrate de tener solo uno activo a la vez.
    */
   isActive?: boolean | null;
-  questions: {
-    type: 'text' | 'number' | 'radio' | 'checkbox' | 'select' | 'file';
-    questionLabel: string;
-    required?: boolean | null;
-    /**
-     * Define las opciones y su puntuación (la suma debe dar 100).
-     */
-    options?:
-      | {
-          label: string;
-          score: number;
+  /**
+   * Organiza las preguntas en secciones. Cada sección se mostrará como un "Paso" (Step) en el formulario interactivo.
+   */
+  sections?:
+    | {
+        title: string;
+        description?: string | null;
+        questions: {
+          type: 'text' | 'number' | 'radio' | 'checkbox' | 'select' | 'file';
+          questionLabel: string;
+          required?: boolean | null;
           /**
-           * Si se activa, al seleccionar esta opción se abrirá un campo de texto adicional obligatorio para que el candidato detalle su respuesta.
+           * Define las opciones y su puntuación (la suma debe dar 100).
            */
-          requiresExplanation?: boolean | null;
-          /**
-           * Ejemplo: "Por favor explica el motivo y fecha..."
-           */
-          explanationPlaceholder?: string | null;
+          options?:
+            | {
+                label: string;
+                score: number;
+                /**
+                 * Si se activa, al seleccionar esta opción se abrirá un campo de texto adicional obligatorio para que el candidato detalle su respuesta.
+                 */
+                requiresExplanation?: boolean | null;
+                /**
+                 * Ejemplo: "Por favor explica el motivo y fecha..."
+                 */
+                explanationPlaceholder?: string | null;
+                id?: string | null;
+              }[]
+            | null;
           id?: string | null;
-        }[]
-      | null;
-    id?: string | null;
-  }[];
+        }[];
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Preguntas generales que no pertenecen a ninguna sección específica.
+   */
+  questions?:
+    | {
+        type: 'text' | 'number' | 'radio' | 'checkbox' | 'select' | 'file';
+        questionLabel: string;
+        required?: boolean | null;
+        /**
+         * Define las opciones y su puntuación (la suma debe dar 100).
+         */
+        options?:
+          | {
+              label: string;
+              score: number;
+              /**
+               * Si se activa, al seleccionar esta opción se abrirá un campo de texto adicional obligatorio para que el candidato detalle su respuesta.
+               */
+              requiresExplanation?: boolean | null;
+              /**
+               * Ejemplo: "Por favor explica el motivo y fecha..."
+               */
+              explanationPlaceholder?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -431,8 +470,12 @@ export interface JobApplication {
   id: number;
   form: number | Form;
   applicantName: string;
-  email: string;
   phone: string;
+  email: string;
+  state: string;
+  city: string;
+  positionApplied: 'Operador Sencillo (B1)' | 'Operador Doble (B1)';
+  availability: 'Inmediato' | '1 semana' | '2 semanas' | '1 mes';
   /**
    * Se calcula automáticamente basado en las respuestas.
    */
@@ -442,6 +485,10 @@ export interface JobApplication {
    */
   answers?:
     | {
+        /**
+         * Sección a la que pertenece esta pregunta (ej. 1. Información General).
+         */
+        section?: string | null;
         question?: string | null;
         answerText?: string | null;
         /**
@@ -733,6 +780,30 @@ export interface ReelsSelect<T extends boolean = true> {
 export interface FormsSelect<T extends boolean = true> {
   title?: T;
   isActive?: T;
+  sections?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        questions?:
+          | T
+          | {
+              type?: T;
+              questionLabel?: T;
+              required?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    score?: T;
+                    requiresExplanation?: T;
+                    explanationPlaceholder?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
   questions?:
     | T
     | {
@@ -760,12 +831,17 @@ export interface FormsSelect<T extends boolean = true> {
 export interface JobApplicationsSelect<T extends boolean = true> {
   form?: T;
   applicantName?: T;
-  email?: T;
   phone?: T;
+  email?: T;
+  state?: T;
+  city?: T;
+  positionApplied?: T;
+  availability?: T;
   totalScore?: T;
   answers?:
     | T
     | {
+        section?: T;
         question?: T;
         answerText?: T;
         explanation?: T;

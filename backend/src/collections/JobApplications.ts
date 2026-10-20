@@ -9,7 +9,7 @@ export const JobApplications: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'applicantName',
-    defaultColumns: ['applicantName', 'email', 'totalScore', 'createdAt'],
+    defaultColumns: ['applicantName', 'phone', 'city', 'state', 'positionApplied', 'availability', 'totalScore', 'createdAt'],
     description: 'Respuestas a los cuestionarios de empleo.',
     components: {
 
@@ -31,7 +31,13 @@ export const JobApplications: CollectionConfig = {
       name: 'applicantName',
       type: 'text',
       required: true,
-      label: 'Nombre del Candidato',
+      label: 'Nombre Completo',
+    },
+    {
+      name: 'phone',
+      type: 'text',
+      required: true,
+      label: 'Teléfono / WhatsApp',
     },
     {
       name: 'email',
@@ -40,10 +46,38 @@ export const JobApplications: CollectionConfig = {
       label: 'Correo Electrónico',
     },
     {
-      name: 'phone',
+      name: 'state',
       type: 'text',
       required: true,
-      label: 'Teléfono',
+      label: 'Estado',
+    },
+    {
+      name: 'city',
+      type: 'text',
+      required: true,
+      label: 'Ciudad',
+    },
+    {
+      name: 'positionApplied',
+      type: 'select',
+      required: true,
+      label: '¿Puesto al que aplicas?',
+      options: [
+        { label: 'Operador Sencillo (B1)', value: 'Operador Sencillo (B1)' },
+        { label: 'Operador Doble (B1)', value: 'Operador Doble (B1)' },
+      ],
+    },
+    {
+      name: 'availability',
+      type: 'select',
+      required: true,
+      label: '¿Disponibilidad para iniciar?',
+      options: [
+        { label: 'Inmediato', value: 'Inmediato' },
+        { label: '1 semana', value: '1 semana' },
+        { label: '2 semanas', value: '2 semanas' },
+        { label: '1 mes', value: '1 mes' },
+      ],
     },
     {
       name: 'totalScore',
@@ -64,6 +98,15 @@ export const JobApplications: CollectionConfig = {
         description: 'Respuestas detalladas proporcionadas por el candidato.',
       },
       fields: [
+        {
+          name: 'section',
+          type: 'text',
+          label: 'Sección',
+          admin: {
+            description: 'Sección a la que pertenece esta pregunta (ej. 1. Información General).',
+            readOnly: true,
+          },
+        },
         {
           name: 'question',
           type: 'text',
