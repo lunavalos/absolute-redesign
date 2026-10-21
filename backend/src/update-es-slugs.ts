@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import { getPayload } from 'payload'
 import config from './payload.config.js'
+import { slugify } from './utils/slugify'
 
 async function run() {
   console.log('🔄 Actualizando Slugs en Español...')
@@ -16,7 +17,7 @@ async function run() {
 
   for (const post of posts.docs) {
     if (post.title) {
-      const newSlug = post.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
+      const newSlug = slugify(post.title)
       try {
         await payload.update({
           collection: 'posts',

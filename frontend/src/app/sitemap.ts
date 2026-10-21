@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { languageAlternates, localeUrl, SEO_LOCALES, type LocalizedPath } from '../lib/seo';
 import { services, servicePath } from '../data/services';
-import { getBlogPosts } from '../data/api';
+import { getBlogPostSlugs } from '../data/api';
 
 export const revalidate = 3600;
 
@@ -22,12 +22,11 @@ const staticPages: Entry[] = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPages: Entry[] = [];
   try {
-    const { docs } = await getBlogPosts('en');
-    blogPages = docs.map((post) => ({
-      path: `/blog/${post.slug}`,
+    blogPages = (await getBlogPostSlugs()).map((post) => ({
+      path: { en: `/blog/${post.slug.en}`, es: `/blog/${post.slug.es}` },
       priority: 0.6,
       changeFrequency: 'monthly',
-      lastModified: post.updatedAt || post.publishedAt
+      lastModified: post.updatedAt
     }));
   } catch {
     // CMS unavailable at build time — ship the sitemap without blog URLs.

@@ -88,6 +88,21 @@ export async function getBlogPostBySlug(slug: string, locale: string): Promise<B
   return null;
 }
 
+/** Each post's slug in both locales — slugs are localized in Payload, so /es and /en URLs differ. */
+export async function getBlogPostSlugs(): Promise<Array<{ id: string; slug: { en: string; es: string }; updatedAt?: string }>> {
+  const [en, es] = await Promise.all(
+    ['en', 'es'].map((locale) =>
+      fetchFromPayload<PayloadResponse<BlogPostDoc>>('posts?limit=100&depth=0&sort=-publishedAt', locale)
+    )
+  );
+  const esSlugs = new Map(es.docs.map((post) => [post.id, post.slug]));
+  return en.docs.map((post) => ({
+    id: post.id,
+    slug: { en: post.slug, es: esSlugs.get(post.id) || post.slug },
+    updatedAt: post.updatedAt || post.publishedAt
+  }));
+}
+
 export async function getTeamMembers(locale: string): Promise<PayloadResponse<TeamMemberDoc>> {
   return fetchFromPayload<PayloadResponse<TeamMemberDoc>>('team?limit=100', locale);
 }

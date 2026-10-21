@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { Link } from '../../../../navigation';
 import { generatePageMetadata, absoluteUrl, localeUrl, breadcrumbJsonLd, JsonLd, ORGANIZATION_ID } from '../../../../lib/seo';
-import { getBlogPostBySlug, getBlogPosts, getMediaUrl } from '../../../../data/api';
+import { getBlogPostBySlug, getBlogPostSlugs, getMediaUrl } from '../../../../data/api';
 import { BlocksRenderer } from '../../../../components/BlocksRenderer';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 
@@ -10,6 +10,15 @@ export async function generateStaticParams() {
   // If we want to statically generate, we could fetch all posts in all locales.
   // For now, we return empty so they are fetched on demand.
   return [];
+}
+
+/** Both locales' URL paths for a post, for canonical/hreflang. */
+async function postPaths(postId: string, fallbackSlug: string) {
+  const entry = (await getBlogPostSlugs()).find((p) => p.id === postId);
+  return {
+    en: `/blog/${entry?.slug.en || fallbackSlug}`,
+    es: `/blog/${entry?.slug.es || fallbackSlug}`
+  };
 }
 
 export async function generateMetadata({
@@ -37,7 +46,7 @@ export async function generateMetadata({
     title: post.meta?.title || postTitle,
     description: post.meta?.description || postExcerpt,
     locale,
-    path: `/blog/${post.slug}`,
+    path: await postPaths(post.id, post.slug),
     ogImage: getMediaUrl(post.meta?.ogImage?.url || post.heroImage?.url) || undefined,
     type: 'article'
   });
@@ -51,7 +60,15 @@ export default async function BlogPostPage({
   const { locale, slug } = await params;
   const post = await getBlogPostBySlug(slug, locale);
 
-  if (!post) notFound();
+  if (!post) {
+    // Slug from the other language (e.g. via the language switcher) → 308 to this language's slug.
+    const otherPost = await getBlogPostBySlug(slug, locale === 'es' ? 'en' : 'es');
+    if (!otherPost) notFound();
+    const paths = await postPaths(otherPost.id, otherPost.slug);
+    const target = locale === 'es' ? paths.es : paths.en;
+    if (target === `/blog/${slug}`) notFound();
+    permanentRedirect(`/${locale}${target}`);
+  }
 
   const isEs = locale === 'es';
   const isLight = post.theme === 'light';

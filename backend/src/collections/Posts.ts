@@ -5,6 +5,7 @@ import { ImageAndTextBlock } from '../blocks/ImageAndText'
 import { CallToActionBlock } from '../blocks/CallToAction'
 import { FeaturesBlock } from '../blocks/Features'
 import { FAQBlock } from '../blocks/FAQ'
+import { slugify } from '../utils/slugify'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -174,7 +175,7 @@ export const Posts: CollectionConfig = {
                 beforeValidate: [
                   ({ value, data }) => {
                     if (!value && data?.title) {
-                      return data.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+                      return slugify(data.title);
                     }
                     return value;
                   },
