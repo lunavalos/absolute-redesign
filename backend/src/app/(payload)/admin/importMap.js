@@ -28,6 +28,8 @@ import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c08
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { ScoreCell as ScoreCell_d8eba26c7b31a6a73c4a9366dafe30bf } from '@/components/ScoreCell'
 import { LogoutButton as LogoutButton_db9ac62598c46d0f1db201f6af05442e } from '@/components/LogoutButton'
+import { Icon as Icon_fe9ca0c9b67829fe284b73bb77968447 } from '@/components/Icon'
+import { Logo as Logo_2b7e2e151f989fb419ce3009e56b903e } from '@/components/Logo'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -62,5 +64,7 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/components/ScoreCell#ScoreCell": ScoreCell_d8eba26c7b31a6a73c4a9366dafe30bf,
   "@/components/LogoutButton#LogoutButton": LogoutButton_db9ac62598c46d0f1db201f6af05442e,
+  "@/components/Icon#Icon": Icon_fe9ca0c9b67829fe284b73bb77968447,
+  "@/components/Logo#Logo": Logo_2b7e2e151f989fb419ce3009e56b903e,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

@@ -179,3 +179,37 @@ a[href$="/collections/job-applications"]::before {
   mask-repeat: no-repeat;
   flex-shrink: 0;
 }
+
+/* Custom Absolute Logo Styling */
+.absolute-admin-logo {
+  transition: transform 0.2s ease;
+}
+
+.absolute-admin-logo:hover {
+  transform: scale(1.02);
+}
+
+/* Enhancements on Login / Auth Pages */
+.template-minimal .absolute-admin-logo,
+.login .absolute-admin-logo {
+  gap: 16px !important;
+  margin-bottom: 8px !important;
+}
+
+.template-minimal .absolute-admin-logo img,
+.login .absolute-admin-logo img {
+  width: 56px !important;
+  height: 56px !important;
+}
+
+.template-minimal .absolute-admin-logo span:first-child,
+.login .absolute-admin-logo span:first-child {
+  font-size: 22px !important;
+  letter-spacing: 0.05em !important;
+}
+
+.template-minimal .absolute-admin-logo span:last-child,
+.login .absolute-admin-logo span:last-child {
+  font-size: 11px !important;
+  letter-spacing: 0.2em !important;
+}

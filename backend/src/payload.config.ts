@@ -27,7 +27,25 @@ export default buildConfig({
 
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: ' · Absolute Group Inc.',
+      icons: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          url: '/favicon-32x32.png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          url: '/apple-icon.png',
+        },
+      ],
+    },
     components: {
+      graphics: {
+        Logo: '@/components/Logo#Logo',
+        Icon: '@/components/Icon#Icon',
+      },
       logout: {
         Button: '@/components/LogoutButton#LogoutButton',
       },
