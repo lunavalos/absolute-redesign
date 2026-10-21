@@ -6,6 +6,7 @@ import { MapPin, Phone, Mail, Send, CheckCircle2, User, MessageSquare, Facebook,
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import ShapeGrid from '../../../components/ShapeGrid';
 import PageHeader from '../../../components/PageHeader';
+import { trackLead } from '../../../components/Analytics';
 
 export default function ContactPage() {
   const t = useTranslations('Contact');
@@ -53,6 +54,7 @@ export default function ContactPage() {
         throw new Error(data.error || (isEs ? 'Error al enviar la solicitud.' : 'Failed to submit inquiry.'));
       }
 
+      trackLead({ form: 'contact', locale });
       setSubmitted(true);
     } catch (err: any) {
       console.error('[Contact Submit Error]:', err);

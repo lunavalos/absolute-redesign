@@ -14,6 +14,7 @@ const rubik = Rubik({
 });
 
 import ReCaptchaProvider from '../../components/ReCaptchaProvider';
+import Analytics from '../../components/Analytics';
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];
@@ -77,6 +78,7 @@ export default async function LocaleLayout({
             <Footer />
           </NextIntlClientProvider>
         </ReCaptchaProvider>
+        <Analytics />
       </body>
     </html>
   );

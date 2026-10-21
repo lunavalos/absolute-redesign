@@ -3,6 +3,7 @@
 import { useState, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import { uploadMedia, submitJobApplication } from '../../../data/api';
+import { trackApplication } from '../../../components/Analytics';
 import { 
   UploadCloud, 
   CheckCircle2, 
@@ -418,6 +419,7 @@ export default function ApplyFormClient({ form, locale }: { form: any, locale: s
         answers: formattedAnswers,
       });
 
+      trackApplication({ position: formData.positionApplied, locale });
       setSuccess(true);
       scrollToTop();
     } catch (err: any) {
