@@ -3,6 +3,20 @@ import { getActiveForm } from '../../../data/api';
 import ShapeGrid from '../../../components/ShapeGrid';
 import ApplyFormClient from './ApplyFormClient';
 import { FileText } from 'lucide-react';
+import { generatePageMetadata } from '../../../lib/seo';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isEs = locale === 'es';
+  return generatePageMetadata({
+    title: isEs ? 'Bolsa de Trabajo | Operadores y Empleos en Laredo, TX' : 'Careers | Truck Driver & Logistics Jobs in Laredo, TX',
+    description: isEs
+      ? 'Únase a Absolute Group. Vacantes para operadores de tráiler y personal de logística transfronteriza en Laredo, Texas.'
+      : 'Join Absolute Group. Openings for truck drivers and cross-border logistics staff in Laredo, Texas.',
+    locale,
+    path: '/apply'
+  });
+}
 
 import PageHeader from '../../../components/PageHeader';
 

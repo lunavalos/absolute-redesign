@@ -6,6 +6,20 @@ import ShapeGrid from '../../../components/ShapeGrid';
 import BorderBeamButton from '../../../components/BorderBeamButton';
 
 import PageHeader from '../../../components/PageHeader';
+import { generatePageMetadata } from '../../../lib/seo';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isEs = locale === 'es';
+  return generatePageMetadata({
+    title: isEs ? 'Nuestro Equipo' : 'Our Team',
+    description: isEs
+      ? 'Conozca al equipo de liderazgo y operaciones de Absolute Group en Laredo, Texas, detrás de cada carga transfronteriza.'
+      : 'Meet the Absolute Group leadership and operations team in Laredo, Texas, behind every cross-border load.',
+    locale,
+    path: '/team'
+  });
+}
 
 export const dynamic = 'force-dynamic';
 

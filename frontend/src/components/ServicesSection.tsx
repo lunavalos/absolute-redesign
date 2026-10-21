@@ -15,6 +15,7 @@ export default function ServicesSection() {
   const servicesList = [
     {
       id: 'ftl',
+      slug: 'full-truckload-ftl',
       icon: Truck,
       number: '01',
       title: t('ftlTitle'),
@@ -26,6 +27,7 @@ export default function ServicesSection() {
     },
     {
       id: 'border',
+      slug: 'cross-border-freight',
       icon: RefreshCw,
       number: '02',
       title: t('borderTitle'),
@@ -37,6 +39,7 @@ export default function ServicesSection() {
     },
     {
       id: 'expedited',
+      slug: 'expedited-freight',
       icon: Zap,
       number: '03',
       title: t('expeditedTitle'),
@@ -126,7 +129,7 @@ export default function ServicesSection() {
                     ))}
                   </ul>
                   <Link
-                    href="/services"
+                    href={`/services/${service.slug}`}
                     className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-400 hover:text-white transition-colors duration-200 group/link"
                   >
                     {t('readMore')}

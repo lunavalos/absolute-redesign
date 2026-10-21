@@ -4,8 +4,22 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { getBlogPosts, getMediaUrl } from '../../../data/api';
 import { ArrowRight, Calendar, BookOpen } from 'lucide-react';
 import ShapeGrid from '../../../components/ShapeGrid';
+import { generatePageMetadata } from '../../../lib/seo';
 
 import PageHeader from '../../../components/PageHeader';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isEs = locale === 'es';
+  return generatePageMetadata({
+    title: isEs ? 'Blog de Logística Transfronteriza y Transporte de Carga' : 'Cross-Border Logistics & Freight Blog',
+    description: isEs
+      ? 'Guías y noticias sobre transporte de carga México–EE. UU., carga completa (FTL), cruce fronterizo en Laredo, C-TPAT y nearshoring.'
+      : 'Guides and news on Mexico–U.S. freight, full truckload (FTL) shipping, Laredo border crossing, C-TPAT and nearshoring logistics.',
+    locale,
+    path: '/blog'
+  });
+}
 
 export default async function BlogListingPage() {
   const t = await getTranslations('Blog');

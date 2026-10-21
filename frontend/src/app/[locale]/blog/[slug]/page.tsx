@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Link } from '../../../../navigation';
-import { generatePageMetadata } from '../../../../lib/seo';
+import { generatePageMetadata, absoluteUrl, localeUrl, breadcrumbJsonLd, JsonLd, ORGANIZATION_ID } from '../../../../lib/seo';
 import { getBlogPostBySlug, getBlogPosts, getMediaUrl } from '../../../../data/api';
 import { BlocksRenderer } from '../../../../components/BlocksRenderer';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
@@ -22,10 +22,11 @@ export async function generateMetadata({
 
   if (!post) {
     return generatePageMetadata({
-      title: 'Article Not Found',
-      description: 'Blog post not found',
+      title: locale === 'es' ? 'Artículo no encontrado' : 'Article Not Found',
+      description: locale === 'es' ? 'Artículo no encontrado' : 'Blog post not found',
       locale,
-      path: '/blog'
+      path: '/blog',
+      noIndex: true
     });
   }
 
@@ -33,11 +34,12 @@ export async function generateMetadata({
   const postExcerpt = typeof post.excerpt === 'string' ? post.excerpt : (post.excerpt as any)?.[locale] || (post.excerpt as any)?.[locale === 'es' ? 'en' : 'es'] || '';
 
   return generatePageMetadata({
-    title: postTitle,
-    description: postExcerpt,
+    title: post.meta?.title || postTitle,
+    description: post.meta?.description || postExcerpt,
     locale,
     path: `/blog/${post.slug}`,
-    ogImage: post.heroImage?.url
+    ogImage: getMediaUrl(post.meta?.ogImage?.url || post.heroImage?.url) || undefined,
+    type: 'article'
   });
 }
 
@@ -58,30 +60,32 @@ export default async function BlogPostPage({
   const postExcerpt = typeof post.excerpt === 'string' ? post.excerpt : (post.excerpt as any)?.[locale] || (post.excerpt as any)?.[locale === 'es' ? 'en' : 'es'] || '';
 
   // Article JSON-LD Schema
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    'headline': postTitle,
-    'description': postExcerpt,
-    'image': `https://absolute-fi.com${post.heroImage?.url}`,
-    'datePublished': post.publishedAt,
-    'author': {
-      '@type': 'Person',
-      'name': post.author?.name || 'Absolute Group'
+  const postUrl = localeUrl(locale, `/blog/${post.slug}`);
+  const articleJsonLd = [
+    {
+      '@type': 'BlogPosting',
+      '@id': `${postUrl}#article`,
+      headline: postTitle,
+      description: postExcerpt,
+      image: absoluteUrl(getMediaUrl(post.heroImage?.url)),
+      datePublished: post.publishedAt,
+      dateModified: post.updatedAt || post.publishedAt,
+      inLanguage: locale,
+      mainEntityOfPage: postUrl,
+      author: post.author?.name
+        ? { '@type': 'Person', name: post.author.name }
+        : { '@id': ORGANIZATION_ID },
+      publisher: { '@id': ORGANIZATION_ID }
     },
-    'publisher': {
-      '@type': 'Organization',
-      'name': 'Absolute Group Inc.',
-      'logo': 'https://absolute-fi.com/images/logo%20Absolute.png'
-    }
-  };
+    breadcrumbJsonLd(locale, [
+      ['Blog', '/blog'],
+      [postTitle, `/blog/${post.slug}`]
+    ])
+  ];
 
   return (
     <article className={`${articleBg} min-h-screen pb-24 transition-colors duration-300`}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
+      <JsonLd data={articleJsonLd} />
 
       {/* Hero with Faded Image Background */}
       <div className="relative w-full overflow-hidden">

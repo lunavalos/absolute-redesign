@@ -91,25 +91,25 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4 text-sm text-slate-300">
               <li>
-                <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
+                <Link href="/services/full-truckload-ftl" className="flex items-center gap-3 hover:text-white transition-colors group">
                   <Truck className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('ftlTitle')}
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
+                <Link href="/services/cross-border-freight" className="flex items-center gap-3 hover:text-white transition-colors group">
                   <RefreshCw className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('borderTitle')}
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
+                <Link href="/services/warehousing" className="flex items-center gap-3 hover:text-white transition-colors group">
                   <Map className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('transloadingTitle')}
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="flex items-center gap-3 hover:text-white transition-colors group">
+                <Link href="/services/expedited-freight" className="flex items-center gap-3 hover:text-white transition-colors group">
                   <Box className="w-4 h-4 text-white group-hover:text-blue-400 transition-colors" />
                   {tServices('expeditedTitle')}
                 </Link>

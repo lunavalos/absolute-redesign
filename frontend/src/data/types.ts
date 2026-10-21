@@ -78,6 +78,7 @@ export interface BlogPostDoc {
   tenant?: PayloadTenant;
   
   publishedAt: string;
+  updatedAt?: string;
   readingTimeMinutes?: number;
   featuredPost?: boolean;
   slug: string;

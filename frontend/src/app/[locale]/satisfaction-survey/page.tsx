@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { getLocale, getTranslations } from 'next-intl/server';
 import PageHeader from '../../../components/PageHeader';
+import { generatePageMetadata } from '../../../lib/seo';
 import SatisfactionSurveyClient from './SatisfactionSurveyClient';
 import { HeartHandshake, Loader2 } from 'lucide-react';
 
@@ -13,14 +14,15 @@ export async function generateMetadata({
   const locale = resolvedParams?.locale || (await getLocale());
   const isEs = locale === 'es';
 
-  return {
-    title: isEs 
-      ? 'Encuesta de Satisfacción — Calidad en Servicio | Absolute Group' 
-      : 'Satisfaction Survey — Quality & Service Feedback | Absolute Group',
-    description: isEs 
-      ? 'Tu opinión es muy importante para nosotros. Esta breve encuesta nos ayuda a comprender tu experiencia y mejorar continuamente nuestro servicio.' 
+  return generatePageMetadata({
+    title: isEs ? 'Encuesta de Satisfacción' : 'Satisfaction Survey',
+    description: isEs
+      ? 'Tu opinión es muy importante para nosotros. Esta breve encuesta nos ayuda a comprender tu experiencia y mejorar continuamente nuestro servicio.'
       : 'Your feedback is very important to us. This short survey helps us understand your experience and improve our service.',
-  };
+    locale,
+    path: '/satisfaction-survey',
+    noIndex: true
+  });
 }
 
 export default async function SatisfactionSurveyPage({
