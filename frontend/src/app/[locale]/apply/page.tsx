@@ -8,8 +8,8 @@ import PageHeader from '../../../components/PageHeader';
 
 export const dynamic = 'force-dynamic'; // Always fetch the latest form
 
-export default async function ApplyPage() {
-  const locale = await getLocale();
+export default async function ApplyPage({ params }: { params?: { locale?: string } }) {
+  const locale = params?.locale || (await getLocale());
   const form = await getActiveForm(locale);
 
   return (

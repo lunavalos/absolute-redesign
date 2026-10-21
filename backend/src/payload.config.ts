@@ -15,6 +15,7 @@ import { Team } from './collections/Team'
 import { Reels } from './collections/Reels'
 import { Forms } from './collections/Forms'
 import { JobApplications } from './collections/JobApplications'
+import { SatisfactionSurveys } from './collections/SatisfactionSurveys'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,6 +45,7 @@ export default buildConfig({
     Reels,
     Forms,
     JobApplications,
+    SatisfactionSurveys,
     Users,
   ],
   editor: lexicalEditor(),

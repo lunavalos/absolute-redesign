@@ -75,6 +75,7 @@ export interface Config {
     reels: Reel;
     forms: Form;
     'job-applications': JobApplication;
+    'satisfaction-surveys': SatisfactionSurvey;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -91,6 +92,7 @@ export interface Config {
     reels: ReelsSelect<false> | ReelsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'job-applications': JobApplicationsSelect<false> | JobApplicationsSelect<true>;
+    'satisfaction-surveys': SatisfactionSurveysSelect<false> | SatisfactionSurveysSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -504,6 +506,30 @@ export interface JobApplication {
   createdAt: string;
 }
 /**
+ * Respuestas de clientes al cuestionario de satisfacción recibido desde QR o enlace web.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "satisfaction-surveys".
+ */
+export interface SatisfactionSurvey {
+  id: number;
+  fullName: string;
+  company?: string | null;
+  assistedBy?: string | null;
+  serviceSatisfaction: 'Very satisfied' | 'Satisfied' | 'Neutral' | 'Dissatisfied' | 'Very dissatisfied';
+  expectationsMet: 'Far exceeded' | 'Exceeded' | 'Met expectations' | 'Below expectations' | 'Far below expectations';
+  supportQuality:
+    | 'Yes, the support was excellent'
+    | 'Yes, I received adequate support'
+    | 'I received limited support'
+    | 'No, I did not receive support';
+  futureUse: 'Yes, definitely' | 'Maybe' | 'No';
+  recommendation: 'Yes' | 'Maybe' | 'No';
+  feedback?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -558,6 +584,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'job-applications';
         value: number | JobApplication;
+      } | null)
+    | ({
+        relationTo: 'satisfaction-surveys';
+        value: number | SatisfactionSurvey;
       } | null)
     | ({
         relationTo: 'users';
@@ -849,6 +879,23 @@ export interface JobApplicationsSelect<T extends boolean = true> {
         attachment?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "satisfaction-surveys_select".
+ */
+export interface SatisfactionSurveysSelect<T extends boolean = true> {
+  fullName?: T;
+  company?: T;
+  assistedBy?: T;
+  serviceSatisfaction?: T;
+  expectationsMet?: T;
+  supportQuality?: T;
+  futureUse?: T;
+  recommendation?: T;
+  feedback?: T;
   updatedAt?: T;
   createdAt?: T;
 }
