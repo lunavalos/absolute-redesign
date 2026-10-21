@@ -70,7 +70,7 @@ export default async function BlogListingPage() {
                   </span>
                   
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={{ pathname: '/blog/[slug]', params: { slug: post.slug } }}
                     className="inline-flex items-center gap-1.5 text-blue-300 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors after:absolute after:inset-0"
                   >
                     {locale === 'es' ? 'Leer Artículo' : 'Read Article'}

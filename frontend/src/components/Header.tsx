@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Link, usePathname } from '../navigation';
+import type { AppPathname } from '../pathnames';
+
+type StaticPathname = Exclude<AppPathname, `${string}[${string}`>;
 import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Menu, X, UserPlus } from 'lucide-react';
@@ -23,7 +26,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
+  const navItems: { href: StaticPathname; label: string }[] = [
     { href: '/', label: t('home') },
     { href: '/about-us', label: t('about') },
     { href: '/services', label: t('services') },

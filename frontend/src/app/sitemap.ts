@@ -1,16 +1,16 @@
 import type { MetadataRoute } from 'next';
-import { languageAlternates, localeUrl, SEO_LOCALES } from '../lib/seo';
-import { services } from '../data/services';
+import { languageAlternates, localeUrl, SEO_LOCALES, type LocalizedPath } from '../lib/seo';
+import { services, servicePath } from '../data/services';
 import { getBlogPosts } from '../data/api';
 
 export const revalidate = 3600;
 
-type Entry = { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']; lastModified?: string };
+type Entry = { path: LocalizedPath; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']; lastModified?: string };
 
 const staticPages: Entry[] = [
   { path: '/', priority: 1, changeFrequency: 'weekly' },
   { path: '/services', priority: 0.9, changeFrequency: 'monthly' },
-  ...services.map((service) => ({ path: `/services/${service.slug}`, priority: 0.9, changeFrequency: 'monthly' as const })),
+  ...services.map((service) => ({ path: servicePath(service), priority: 0.9, changeFrequency: 'monthly' as const })),
   { path: '/about-us', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/contact-us', priority: 0.8, changeFrequency: 'yearly' },
   { path: '/blog', priority: 0.7, changeFrequency: 'weekly' },

@@ -1,4 +1,5 @@
 import type { Localized } from '../lib/seo';
+import { serviceSlugs, type ServiceId } from './serviceSlugs';
 
 export interface ServiceFaq {
   q: string;
@@ -6,8 +7,9 @@ export interface ServiceFaq {
 }
 
 export interface ServiceDoc {
-  /** URL slug under /services — shared by both locales. */
-  slug: string;
+  id: ServiceId;
+  /** URL slug under /services (en) and /servicios (es). */
+  slug: Localized;
   /** Short name used in cards, breadcrumbs and schema. */
   name: Localized;
   /** Card heading on the /services grid. */
@@ -27,7 +29,8 @@ export interface ServiceDoc {
 
 export const services: ServiceDoc[] = [
   {
-    slug: 'full-truckload-ftl',
+    id: 'ftl',
+    slug: serviceSlugs.ftl,
     name: { en: 'Full Truckload (FTL)', es: 'Carga Completa (FTL)' },
     title: { en: 'TRUCKLOAD / DEDICATED DRY VAN', es: 'CARGA COMPLETA / CAJA SECA DEDICADA' },
     sub: {
@@ -111,7 +114,8 @@ export const services: ServiceDoc[] = [
     image: '/images/new-truck-01.jpg'
   },
   {
-    slug: 'cross-border-freight',
+    id: 'crossBorder',
+    slug: serviceSlugs.crossBorder,
     name: { en: 'Cross-Border Freight', es: 'Carga Transfronteriza' },
     title: { en: 'BORDER CROSSING', es: 'CRUCE FRONTERIZO' },
     sub: {
@@ -195,7 +199,8 @@ export const services: ServiceDoc[] = [
     image: '/images/driving.jpg'
   },
   {
-    slug: 'door-to-door-freight',
+    id: 'doorToDoor',
+    slug: serviceSlugs.doorToDoor,
     name: { en: 'Door-to-Door Freight', es: 'Carga Puerta a Puerta' },
     title: { en: 'DOOR 2 DOOR FREIGHT SERVICES', es: 'SERVICIOS DE CARGA PUERTA A PUERTA' },
     sub: {
@@ -271,7 +276,8 @@ export const services: ServiceDoc[] = [
     image: '/images/red-trucks-01.jpg'
   },
   {
-    slug: 'expedited-freight',
+    id: 'expedited',
+    slug: serviceSlugs.expedited,
     name: { en: 'Expedited Freight', es: 'Carga Expedita' },
     title: { en: 'EXPEDITE SERVICE', es: 'SERVICIO EXPEDITO' },
     sub: {
@@ -347,7 +353,8 @@ export const services: ServiceDoc[] = [
     image: '/images/new-truck-2.jpg'
   },
   {
-    slug: 'warehousing',
+    id: 'warehousing',
+    slug: serviceSlugs.warehousing,
     name: { en: 'Warehousing & Cross-Docking', es: 'Almacenaje y Cross-Docking' },
     title: { en: 'WAREHOUSE FACILITY', es: 'INSTALACIONES DE ALMACENAMIENTO' },
     sub: {
@@ -415,7 +422,8 @@ export const services: ServiceDoc[] = [
     image: '/images/office-yard.jpg'
   },
   {
-    slug: 'transloading',
+    id: 'transloading',
+    slug: serviceSlugs.transloading,
     name: { en: 'Transloading', es: 'Transbordo' },
     title: { en: 'TRANSLOAD SERVICE', es: 'SERVICIO DE TRANSBORDO' },
     sub: {
@@ -484,8 +492,13 @@ export const services: ServiceDoc[] = [
   }
 ];
 
-export function getServiceBySlug(slug: string): ServiceDoc | undefined {
-  return services.find((service) => service.slug === slug);
+export function getServiceBySlug(slug: string, locale: string): ServiceDoc | undefined {
+  return services.find((service) => (locale === 'es' ? service.slug.es : service.slug.en) === slug);
+}
+
+/** Internal route path per locale, e.g. { en: '/services/transloading', es: '/services/transbordo' }. */
+export function servicePath(service: ServiceDoc): Localized {
+  return { en: `/services/${service.slug.en}`, es: `/services/${service.slug.es}` };
 }
 
 /** FAQs shown on the /services hub — written around the broad "freight & cross-border services" query. */

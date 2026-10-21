@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/signature/', '/en/satisfaction-survey', '/es/satisfaction-survey']
+        disallow: ['/api/', '/signature/', '/en/satisfaction-survey', '/es/encuesta-de-satisfaccion']
       }
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

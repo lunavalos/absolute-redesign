@@ -1,6 +1,6 @@
 import { generatePageMetadata, pick, localeUrl, breadcrumbJsonLd, faqJsonLd, JsonLd, ORGANIZATION_ID } from '../../../lib/seo';
 import { Link } from '../../../navigation';
-import { services, servicesHubFaqs } from '../../../data/services';
+import { services, servicesHubFaqs, servicePath } from '../../../data/services';
 import { serviceIcons } from './serviceIcons';
 import { Layers, ArrowRight } from 'lucide-react';
 
@@ -48,7 +48,7 @@ export default async function ServicesPage({
         item: {
           '@type': 'Service',
           name: pick(service.name, locale),
-          url: localeUrl(locale, `/services/${service.slug}`),
+          url: localeUrl(locale, servicePath(service)),
           provider: { '@id': ORGANIZATION_ID }
         }
       }))
@@ -76,11 +76,11 @@ export default async function ServicesPage({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => {
-            const Icon = serviceIcons[service.slug];
+            const Icon = serviceIcons[service.id];
             return (
               <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
+                key={service.id}
+                href={{ pathname: '/services/[slug]', params: { slug: pick(service.slug, locale) } }}
                 className="group flex flex-col p-6 lg:p-8 bg-slate-900/40 border border-slate-800/60 rounded-2xl hover:bg-slate-800/40 hover:border-slate-700 transition-all duration-300"
               >
                 {/* Header: Title and Icon */}

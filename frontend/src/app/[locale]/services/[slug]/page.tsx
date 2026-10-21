@@ -1,16 +1,18 @@
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { CheckCircle, ArrowRight, Phone } from 'lucide-react';
 import { Link } from '../../../../navigation';
 import PageHeader from '../../../../components/PageHeader';
 import BorderBeamButton from '../../../../components/BorderBeamButton';
-import { services, getServiceBySlug } from '../../../../data/services';
+import { services, getServiceBySlug, servicePath } from '../../../../data/services';
+import { findServiceSlug, serviceSlugs } from '../../../../data/serviceSlugs';
 import { serviceIcons } from '../serviceIcons';
 import {
   generatePageMetadata,
   pick,
   localeUrl,
+  publicPath,
   absoluteUrl,
   breadcrumbJsonLd,
   faqJsonLd,
@@ -20,10 +22,8 @@ import {
 } from '../../../../lib/seo';
 
 export function generateStaticParams() {
-  return SEO_LOCALES.flatMap((locale) => services.map((service) => ({ locale, slug: service.slug })));
+  return SEO_LOCALES.flatMap((locale) => services.map((service) => ({ locale, slug: pick(service.slug, locale) })));
 }
-
-export const dynamicParams = false;
 
 export async function generateMetadata({
   params
@@ -31,7 +31,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = getServiceBySlug(slug, locale);
   if (!service) return {};
 
   return generatePageMetadata({
@@ -39,7 +39,7 @@ export async function generateMetadata({
     description: pick(service.metaDescription, locale),
     keywords: pick(service.keywords, locale),
     locale,
-    path: `/services/${service.slug}`,
+    path: servicePath(service),
     ogImage: service.image
   });
 }
@@ -51,27 +51,33 @@ export default async function ServiceDetailPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const service = getServiceBySlug(slug);
-  if (!service) notFound();
+  const service = getServiceBySlug(slug, locale);
+  if (!service) {
+    // The other language's slug (e.g. /es/servicios/full-truckload-ftl) → 301 to this language's URL.
+    const match = findServiceSlug(slug);
+    if (!match) notFound();
+    permanentRedirect(`/${locale}${publicPath(locale, `/services/${pick(serviceSlugs[match.id], locale)}`)}`);
+  }
 
   const isEs = locale === 'es';
-  const Icon = serviceIcons[service.slug];
+  const Icon = serviceIcons[service.id];
   const name = pick(service.name, locale);
   const faqs = pick(service.faqs, locale);
-  const related = services.filter((s) => s.slug !== service.slug);
+  const related = services.filter((s) => s.id !== service.id);
+  const url = localeUrl(locale, servicePath(service));
 
   const jsonLd = [
     breadcrumbJsonLd(locale, [
       [isEs ? 'Servicios' : 'Services', '/services'],
-      [name, `/services/${service.slug}`]
+      [name, servicePath(service)]
     ]),
     {
       '@type': 'Service',
-      '@id': `${localeUrl(locale, `/services/${service.slug}`)}#service`,
+      '@id': `${url}#service`,
       name,
       serviceType: name,
       description: pick(service.metaDescription, locale),
-      url: localeUrl(locale, `/services/${service.slug}`),
+      url,
       image: absoluteUrl(service.image),
       inLanguage: locale,
       provider: { '@id': ORGANIZATION_ID },
@@ -174,11 +180,11 @@ export default async function ServiceDetailPage({
         <h2 className="text-white font-bold text-2xl mb-8">{isEs ? 'Otros servicios' : 'Related Services'}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {related.map((other) => {
-            const OtherIcon = serviceIcons[other.slug];
+            const OtherIcon = serviceIcons[other.id];
             return (
               <Link
-                key={other.slug}
-                href={`/services/${other.slug}`}
+                key={other.id}
+                href={{ pathname: '/services/[slug]', params: { slug: pick(other.slug, locale) } }}
                 className="group flex items-center gap-3 p-4 bg-slate-900/40 border border-slate-800/60 rounded-xl hover:bg-slate-800/40 hover:border-slate-700 transition-all"
               >
                 <OtherIcon className="w-5 h-5 text-blue-400 shrink-0" />

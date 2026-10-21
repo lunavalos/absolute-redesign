@@ -2,6 +2,7 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '../navigation';
+import { serviceSlugs } from '../data/serviceSlugs';
 import { Truck, RefreshCw, Zap, Warehouse, ArrowRight, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import CursorGrid from './CursorGrid';
@@ -15,7 +16,7 @@ export default function ServicesSection() {
   const servicesList = [
     {
       id: 'ftl',
-      slug: 'full-truckload-ftl',
+      slug: serviceSlugs.ftl[locale],
       icon: Truck,
       number: '01',
       title: t('ftlTitle'),
@@ -27,7 +28,7 @@ export default function ServicesSection() {
     },
     {
       id: 'border',
-      slug: 'cross-border-freight',
+      slug: serviceSlugs.crossBorder[locale],
       icon: RefreshCw,
       number: '02',
       title: t('borderTitle'),
@@ -39,7 +40,7 @@ export default function ServicesSection() {
     },
     {
       id: 'expedited',
-      slug: 'expedited-freight',
+      slug: serviceSlugs.expedited[locale],
       icon: Zap,
       number: '03',
       title: t('expeditedTitle'),
@@ -129,7 +130,7 @@ export default function ServicesSection() {
                     ))}
                   </ul>
                   <Link
-                    href={`/services/${service.slug}`}
+                    href={{ pathname: '/services/[slug]', params: { slug: service.slug } }}
                     className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-400 hover:text-white transition-colors duration-200 group/link"
                   >
                     {t('readMore')}

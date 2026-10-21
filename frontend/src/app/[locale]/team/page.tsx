@@ -6,6 +6,7 @@ import ShapeGrid from '../../../components/ShapeGrid';
 import BorderBeamButton from '../../../components/BorderBeamButton';
 
 import PageHeader from '../../../components/PageHeader';
+import { Link } from '../../../navigation';
 import { generatePageMetadata } from '../../../lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -114,10 +115,12 @@ export default async function TeamPage() {
               ? 'Estamos siempre en busca de talento excepcional para llevar nuestras operaciones al siguiente nivel. Aplica a nuestras vacantes abiertas y sé parte de la familia de Absolute Group.'
               : 'We are always looking for exceptional talent to take our operations to the next level. Apply to our open positions and become part of the Absolute Group family.'}
           </p>
-          <BorderBeamButton href="/apply">
-            {locale === 'es' ? 'Aplicar Ahora' : 'Apply Now'}
-            <ArrowRight className="w-4 h-4 ml-1" />
-          </BorderBeamButton>
+          <Link href="/apply">
+            <BorderBeamButton>
+              {locale === 'es' ? 'Aplicar Ahora' : 'Apply Now'}
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </BorderBeamButton>
+          </Link>
         </div>
       </section>
 

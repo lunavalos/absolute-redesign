@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { pathnames } from '../pathnames';
 
 // Production host is www — absolute-fi.com 308-redirects here, so canonicals must use it.
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.absolute-fi.com').replace(/\/$/, '');
@@ -13,10 +14,31 @@ export function pick<T>(value: Localized<T>, locale: string): T {
   return locale === 'es' ? value.es : value.en;
 }
 
-/** Absolute URL for a path under a locale, e.g. localeUrl('es', '/services') → https://www.absolute-fi.com/es/services */
-export function localeUrl(locale: string, path = '/'): string {
-  const cleanPath = path === '/' || path === '' ? '' : path.startsWith('/') ? path : `/${path}`;
-  return `${SITE_URL}/${locale}${cleanPath}`;
+/** A path that is the same in both locales, or a different one per locale (e.g. translated service slugs). */
+export type LocalizedPath = string | Localized;
+
+/**
+ * Translates an internal route path into its public URL path for a locale, using the
+ * routing pathnames map: publicPath('es', '/services/transbordo') → '/servicios/transbordo'.
+ */
+export function publicPath(locale: string, path: string): string {
+  const clean = path === '' ? '/' : path.startsWith('/') ? path : `/${path}`;
+  for (const [internal, localized] of Object.entries(pathnames)) {
+    const target = typeof localized === 'string' ? localized : localized[locale as 'en' | 'es'];
+    const pattern = new RegExp(`^${internal.replace(/\[[^\]]+\]/g, '([^/]+)')}$`);
+    const match = clean.match(pattern);
+    if (!match) continue;
+    let i = 1;
+    return target.replace(/\[[^\]]+\]/g, () => match[i++]);
+  }
+  return clean;
+}
+
+/** Absolute URL for a path under a locale, e.g. localeUrl('es', '/services') → https://www.absolute-fi.com/es/servicios */
+export function localeUrl(locale: string, path: LocalizedPath = '/'): string {
+  const raw = typeof path === 'string' ? path : pick(path, locale);
+  const translated = publicPath(locale, raw);
+  return `${SITE_URL}/${locale}${translated === '/' ? '' : translated}`;
 }
 
 export function absoluteUrl(pathOrUrl?: string): string | undefined {
@@ -26,7 +48,7 @@ export function absoluteUrl(pathOrUrl?: string): string | undefined {
 }
 
 /** hreflang map shared by page metadata and the sitemap. */
-export function languageAlternates(path = '/') {
+export function languageAlternates(path: LocalizedPath = '/') {
   return {
     en: localeUrl('en', path),
     es: localeUrl('es', path),
@@ -38,7 +60,7 @@ interface GeneratePageMetadataOptions {
   title: string;
   description: string;
   locale: string;
-  path?: string;
+  path?: LocalizedPath;
   ogImage?: string;
   keywords?: string[];
   noIndex?: boolean;
@@ -99,8 +121,8 @@ export function generatePageMetadata({
 }
 
 /** BreadcrumbList JSON-LD from [name, path] pairs (Home is prepended). */
-export function breadcrumbJsonLd(locale: string, items: Array<[string, string]>) {
-  const trail: Array<[string, string]> = [[locale === 'es' ? 'Inicio' : 'Home', '/'], ...items];
+export function breadcrumbJsonLd(locale: string, items: Array<[string, LocalizedPath]>) {
+  const trail: Array<[string, LocalizedPath]> = [[locale === 'es' ? 'Inicio' : 'Home', '/'], ...items];
   return {
     '@type': 'BreadcrumbList',
     itemListElement: trail.map(([name, path], i) => ({

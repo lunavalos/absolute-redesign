@@ -1,17 +1,29 @@
 'use client';
 
 import { useLocale } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { usePathname, useRouter } from '../navigation';
+import { findServiceSlug, serviceSlugs } from '../data/serviceSlugs';
 import { Globe } from 'lucide-react';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
+  const params = useParams<{ slug?: string }>();
 
   const toggleLanguage = (newLocale: 'en' | 'es') => {
     if (newLocale === locale) return;
-    router.replace(pathname, { locale: newLocale });
+    if (pathname === '/services/[slug]') {
+      // Service slugs are translated, so map to the other language's slug.
+      const match = findServiceSlug(params.slug ?? '');
+      const slug = match ? serviceSlugs[match.id][newLocale] : params.slug ?? '';
+      router.replace({ pathname, params: { slug } }, { locale: newLocale });
+    } else if (pathname === '/blog/[slug]') {
+      router.replace({ pathname, params: { slug: params.slug ?? '' } }, { locale: newLocale });
+    } else {
+      router.replace(pathname, { locale: newLocale });
+    }
   };
 
   return (
