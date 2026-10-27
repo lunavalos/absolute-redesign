@@ -8,6 +8,8 @@
     "blog": "Blog",
     "contact": "Contacto",
     "clientLogin": "Acceso Clientes",
+    "clientPortal": "Portal del cliente",
+    "joinTeam": "Únete al equipo",
     "quoteCTA": "Cotizar Carga"
   },
   "Header": {

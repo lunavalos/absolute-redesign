@@ -8,7 +8,7 @@ import type { AppPathname } from '../pathnames';
 type StaticPathname = Exclude<AppPathname, `${string}[${string}`>;
 import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
-import { Menu, X, UserPlus } from 'lucide-react';
+import { Menu, X, ExternalLink } from 'lucide-react';
 
 export default function Header() {
   const t = useTranslations('Navigation');
@@ -85,14 +85,16 @@ export default function Header() {
         <div className="hidden lg:flex items-center gap-4 shrink-0">
           <LanguageSwitcher />
 
-          {/* Normal Client Login Button */}
-          <Link
-            href="/apply"
+          {/* Client Portal Button */}
+          <a
+            href="https://app.alvys.com/#/tracking/absolute-group-inc"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] bg-[#BE0D08] hover:bg-[#a10b07] text-white text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95 shadow-lg"
           >
-            <UserPlus className="w-3.5 h-3.5" />
-            {isEs ? 'Únete al equipo' : 'Join the team'}
-          </Link>
+            <ExternalLink className="w-3.5 h-3.5" />
+            {isEs ? 'Portal del cliente' : 'Client Portal'}
+          </a>
         </div>
 
         {/* Mobile Menu Controls */}
@@ -139,14 +141,16 @@ export default function Header() {
           </nav>
 
           <div className="pt-3 border-t border-white/10">
-            <Link
-              href="/apply"
+            <a
+              href="https://app.alvys.com/#/tracking/absolute-group-inc"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#BE0D08] hover:bg-[#a10b07] rounded-xl shadow-md"
             >
-              <UserPlus className="w-4 h-4" />
-              {isEs ? 'Únete al team' : 'Join the team'}
-            </Link>
+              <ExternalLink className="w-4 h-4" />
+              {isEs ? 'Portal del cliente' : 'Client Portal'}
+            </a>
           </div>
         </div>
       )}

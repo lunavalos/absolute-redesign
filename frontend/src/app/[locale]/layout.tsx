@@ -7,6 +7,7 @@ import { locales } from '../../i18n';
 import { SITE_URL, ORGANIZATION_ID, LOGO_URL, localeUrl, JsonLd } from '../../lib/seo';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import JoinTeamBubble from '../../components/JoinTeamBubble';
 import '../globals.css';
 
 const rubik = Rubik({
@@ -99,6 +100,7 @@ export default async function LocaleLayout({
             <Header />
             <main className="flex-grow">{children}</main>
             <Footer />
+            <JoinTeamBubble />
           </NextIntlClientProvider>
         </ReCaptchaProvider>
         <Analytics />

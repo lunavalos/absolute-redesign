@@ -8,6 +8,8 @@
     "blog": "Blog",
     "contact": "Contact",
     "clientLogin": "Client Login",
+    "clientPortal": "Client Portal",
+    "joinTeam": "Join the team",
     "quoteCTA": "Get a Quote"
   },
   "Header": {

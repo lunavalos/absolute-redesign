@@ -30,6 +30,33 @@ const nextConfig: NextConfig = {
       '.mjs': ['.mts', '.mjs'],
     }
 
+    const disableResolveUrlSourceMap = (rules: any[]) => {
+      for (const rule of rules) {
+        if (!rule) continue
+        if (rule.oneOf && Array.isArray(rule.oneOf)) {
+          disableResolveUrlSourceMap(rule.oneOf)
+        }
+        if (Array.isArray(rule.use)) {
+          for (const item of rule.use) {
+            if (
+              item &&
+              typeof item === 'object' &&
+              typeof item.loader === 'string' &&
+              item.loader.includes('resolve-url-loader')
+            ) {
+              if (item.options) {
+                item.options.sourceMap = false
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (webpackConfig.module?.rules) {
+      disableResolveUrlSourceMap(webpackConfig.module.rules)
+    }
+
     return webpackConfig
   },
   turbopack: {
